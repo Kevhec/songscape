@@ -6,6 +6,7 @@
   grid-template-columns: repeat(4, 1fr);
   width: 100vw;
   position: relative;
+  background-color: $neutral-black;
 
   @include mediaq(768px) {
     display: flex;
@@ -33,5 +34,10 @@
       top: var(--y);
       transition: top 200ms ease-in-out;
     }
+  }
+
+  &--tablet {
+    width: 50px;
+    overflow-y: hidden;
   }
 }

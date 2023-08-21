@@ -20,7 +20,8 @@ export default function AppLayout({ children }: Props) {
       <header>
         <figure className="logo">
           <picture>
-            <source srcSet="/logo-large.svg" media="(min-width: 768px)" />
+            <source srcSet="/logo-large.svg" media="(min-width: 1024px)" />
+            <source srcSet="/logo-small.svg" media="(min-width: 768px)" />
             <img src="/logo-nowaves.svg" alt="Songscape logo" width={120} height={25} />
           </picture>
         </figure>
@@ -34,11 +35,9 @@ export default function AppLayout({ children }: Props) {
         </div>
         <p className={`attribution ${lato.className}`}>Powered by AudioScrobbler</p>
       </aside>
-      <div className="container">
-        <main>
-          {children}
-        </main>
-      </div>
+      <main>
+        {children}
+      </main>
     </>
   );
 }

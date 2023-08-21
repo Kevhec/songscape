@@ -30,6 +30,6 @@ export default function Icon({
   const IconComponent = iconComponentMapping[variant];
 
   return (
-    <IconComponent fill={fill} width={width} height={height} />
+    <IconComponent fill={fill} width={width} height={height || width} />
   );
 }
