@@ -1,0 +1,35 @@
+@use '@/scss/global/variables.scss' as *;
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(4);
+  padding: 8px 16px;
+  width: 100%;
+  font-size: rem(14);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 500px 500px 0px 0px;
+  color: $neutral-light-gray;
+  transition: color 200ms ease-in;
+  z-index: 3;
+  position: relative;
+
+  &--active {
+    color: $neutral-black;
+  }
+
+  @include mediaq(768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: rem(16);
+    font-weight: 600;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

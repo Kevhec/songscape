@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Page() {
   return (
-    <h1>Hello, Home page!</h1>
+    <h1>Hello, Favorites!</h1>
   );
 }

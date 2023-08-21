@@ -1,0 +1,21 @@
+/* Colors */
+$neutral-black: #212529;
+$neutral-gray: #A1A1A1;
+$neutral-light-gray: rgb(224, 224, 224);
+
+$primary-yellow: rgb(236, 243, 158);
+$primary-green: #9BBB9A;
+
+$secondary-desaturated-green: #5E7062;
+$difference-yellow-black: #cbce75;
+
+@function rem ($px: number) {
+  $result: calc($px / 16) + rem;
+  @return $result
+};
+
+@mixin mediaq($bp) {
+  @media screen and (min-width: $bp) {
+    @content  
+  }
+};
