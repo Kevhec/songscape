@@ -19,15 +19,11 @@ export default async function getArtistChart(): Promise<ChartArtist[]> {
     // Modify provided artists with aditional information provided by musicbrainz
     const artistsChart = topArtists.map(async (LFMChartArtist) => {
 
-      const userPromises = await Promise.all([
+      // Get musicbrain's and lastFM artist data
+      const [MBArtist, LFMArtist] = await Promise.all([
         findWithNameMB(LFMChartArtist.name),
         getArtistInfo(LFMChartArtist.name)
       ])
-      // Get musicbrain's artist data
-      const MBArtist = await findWithNameMB(LFMChartArtist.name);
-
-      // Get lastfm artist's data
-      const LFMArtist = await getArtistInfo(LFMChartArtist.name);
 
       return {
         name: LFMArtist.name,
