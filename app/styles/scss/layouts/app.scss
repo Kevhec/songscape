@@ -102,6 +102,8 @@ aside {
 main {
   position: relative;
   flex-grow: 1;
+  overflow-y: hidden;
+
   @include mediaq(768px) {
     flex-grow: unset;
     min-height: unset;
