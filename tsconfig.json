@@ -23,7 +23,8 @@
       "@/*": ["./*"],
       "@/fonts": ["./app/styles/fonts"],
       "@/scss/*": ["./app/styles/scss/*"],
-      "@/assets/*": ["./app/_assets/*"]
+      "@/assets/*": ["./app/_assets/*"],
+      "@/lib/*": ["./app/_lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./next.config.js", "swiper.d.ts"],
