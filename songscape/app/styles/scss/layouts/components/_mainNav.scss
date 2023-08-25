@@ -1,0 +1,43 @@
+@use '@/scss/global/variables' as *;
+
+.main-nav {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100vw;
+  position: relative;
+  background-color: $neutral-black;
+
+  @include mediaq(768px) {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    gap: rem(16);
+  }
+
+  &::before {
+    content: "";
+    width: var(--linkWidth);
+    height: 100%;
+    background-color: $primary-yellow;
+    border-radius: 500px 500px 0px 0px;
+    z-index: 2;
+
+    position: absolute;
+    left: var(--x);
+    transition: left 200ms ease-in-out, width 200ms ease-in;
+
+    @include mediaq(768px) {
+      height: var(--linkHeight);
+      border-radius: 500px;
+      left: unset;
+      top: var(--y);
+      transition: top 200ms ease-in-out;
+    }
+  }
+
+  &--tablet {
+    width: 50px;
+    overflow-y: hidden;
+  }
+}

@@ -1,0 +1,47 @@
+@use '@/scss/global/variables.scss' as *;
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(4);
+  padding: 8px 16px 4px;
+  width: 100%;
+  font-size: rem(14);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 500px;
+  color: $neutral-light-gray;
+  transition: color 150ms ease-in, font-weight 200ms ease-in, background-color 100ms ease-in;
+  z-index: 3;
+  position: relative;
+
+  &--active {
+    color: $neutral-black;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  @include mediaq(768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: rem(16);
+    padding-bottom: 8px;
+
+    &:hover {
+      background-color: hsla(65, 78%, 79%, 0.2);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &--tablet {
+    span {
+      display: none;
+    }
+  }
+}
