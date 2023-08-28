@@ -1,0 +1,49 @@
+@use '@/scss/global/variables' as *;
+
+.mySwiper {
+  position: relative;
+}
+
+swiper-container {
+  width: 100%;
+  height: auto;
+}
+
+swiper-slide {
+  width: auto;
+}
+
+.swiper-nextElement,
+.swiper-prevElement {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  box-sizing: border-box;
+  height: 100%;
+  z-index: 2;
+  transition: opacity 150ms ease-in-out;
+  top: 0;
+  padding: 14px;
+  
+  @include mediaq(768px) {
+    width: 100px;
+  }
+}
+
+.swiper-prevElement {
+  background: linear-gradient(to right, rgba(33, 37, 41, 1) 0%, rgba(33, 37, 41, 0.00) 100%);
+  left: 0;
+  justify-content: left;
+}
+
+.swiper-nextElement {
+  background: linear-gradient(to left, rgba(33, 37, 41, 1) 0%, rgba(33, 37, 41, 0.00) 100%);
+  right: 0;
+  justify-content: right;
+}
+
+.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
+}

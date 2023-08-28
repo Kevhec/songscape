@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import RateLimiter from './app/_lib/rateLimiter';
 
 // eslint-disable-next-line consistent-return
 export default function middleware(request: NextRequest) {
@@ -8,4 +9,7 @@ export default function middleware(request: NextRequest) {
   if (path === '/') {
     return NextResponse.redirect(new URL('home', request.url));
   }
+
+  const rateLimiter = RateLimiter.getInstance();
+  rateLimiter.reset();
 }

@@ -3,7 +3,7 @@ import { LFMArtist } from './getTopArtists';
 
 export default async function getArtistInfo(artistName: string) {
   try {
-    const artist: LFMArtist = await getFromLFM({
+    const { artist }: { artist: LFMArtist } = await getFromLFM({
       params: ['artistInfo', 'artistName'],
       values: {
         artistName,

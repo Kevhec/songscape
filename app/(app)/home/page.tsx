@@ -1,8 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Slider from '@/components/slider';
-import Card from '@/components/card';
+import icon25 from '@/public/25.svg';
+import Slider from '@/components/Slider';
+import ArtistCard from '@/components/cards/ArtistCard';
+import Icon from '@/components/icon';
+import Tags from '@/components/tags/Tags';
+import { lato } from '@/fonts';
 
 export type LFMTag = {
   name: string
@@ -17,29 +21,53 @@ interface ChartArtist {
 }
 
 export default async function Page() {
-  const res = await fetch('http://localhost:3000/api/chart/', {
-    headers: {
-      method: 'artist',
-    },
-  });
-  /* const artistsList: ChartArtist[] = await res.json(); */
-  console.log(res)
+  let response;
+  try {
+    response = await fetch('http://localhost:3000/api/chart/', {
+      headers: {
+        method: 'artist',
+      },
+    });
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+  const artistsList: ChartArtist[] = await response?.json();
 
-  /* const cards = artistsList.map((artist) => {
-    const { name, location, picture } = artist;
+  const cards = artistsList.map((artist) => {
+    const {
+      name, location, picture, tags, mbid,
+    } = artist;
+
     return (
-      <Card>
-        <Image src={picture} alt={`Picture of ${name}`} />
-        <Link href={`/results/artist/${name}`}>{name}</Link>
-        <p>{location}</p>
-      </Card>
+      <ArtistCard>
+        <Link href={`/results/artist/${name}?id=${mbid}`} className="artist-card__link">
+          <Image
+            src={picture || 'http://placekitten.com/200/300'}
+            alt={`Picture of ${name}`}
+            width={170}
+            height={170}
+            className="artist-card__image"
+          />
+          <p className="artist-card__name">{name}</p>
+        </Link>
+        <div className="artist-card__body">
+          <div className={`artist-card__location ${lato.variable}`}>
+            <Icon variant="location" fill="#212529" width={22} />
+            <p className="artist-card__location-text">{location}</p>
+          </div>
+          <Tags tags={tags} />
+        </div>
+      </ArtistCard>
     );
-  }); */
+  });
 
   return (
     <>
-      <h1>Hello, Home page!</h1>
-{/*       <Slider elements={cards} /> */}
+      <div className="home-heading">
+        <Image src={icon25} alt="25" />
+        <h1>Artists that made history</h1>
+      </div>
+      <Slider elements={cards} />
     </>
   );
 }

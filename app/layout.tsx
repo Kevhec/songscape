@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import { montserrat } from '@/app/styles/fonts';
-import '@/app/styles/scss/main.scss';
+import { montserrat } from '@/styles/fonts';
+import '@/scss/main.scss';
 
 interface Props {
   children: React.ReactNode;

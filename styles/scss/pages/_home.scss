@@ -1,0 +1,12 @@
+@use '../global/variables' as *;
+
+.home-heading {
+  display: flex;
+  gap: 4px;
+  margin-bottom: rem(16);
+
+  h1 {
+    font-size: rem(18);
+    font-weight: 700;
+  }
+}

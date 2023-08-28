@@ -4,9 +4,9 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function Card({ children }: Props) {
+export default function ArtistCard({ children }: Props) {
   return (
-    <div>
+    <div className="artist-card">
       {children}
     </div>
   );

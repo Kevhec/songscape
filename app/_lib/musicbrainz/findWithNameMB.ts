@@ -1,6 +1,9 @@
+import RateLimiter from '../rateLimiter';
+
 export interface MBSearchArtist {
   id: number
   name: string
+  score: number
 }
 
 export type MBRelation = {
@@ -10,42 +13,18 @@ export type MBRelation = {
   }
 };
 
-export interface MBLookupArtist {
-  id: number
-  name: string
-  relations: MBRelation[]
-  gender: string
-  'life-span': {
-    ended: boolean
-    begin: string
-    end: string
-  }
-  area: {
-    name: string
-  }
-}
+const rateLimiter = RateLimiter.getInstance();
 
-export default async function findWithNameMB(artistName: string): Promise<MBLookupArtist> {
+export default async function searchByName(artistName: string):Promise<MBSearchArtist[]> {
   try {
     // Format artist name to fit on url standards
-    const fmtName = artistName.replace(' ', '%20');
+    const fmtName = artistName.replace(' ', '%20').trim();
 
     // Call musicbrainz api to look for best match for provided name
-    const searchRes = await fetch(`http://musicbrainz.org/ws/2/artist/?query=artist:${fmtName}&limit=10&fmt=json`, {
-      headers: {
-        'User-Agent': 'songscape/1.0 (kevhec.dev@gmail.com)',
-      },
-    });
-    const { artists: searchResults }: { artists: MBSearchArtist[] } = await searchRes.json();
+    const searchRes = await rateLimiter.fetchRequest(`https://musicbrainz.org/ws/2/artist/?query=artist:${fmtName}&limit=10&fmt=json`);
+    const { artists: searchResults }: { artists: MBSearchArtist[] } = searchRes;
 
-    // Get id from best artist match
-    const targetArtistId = searchResults.find((artist) => artist.name === artistName)?.id;
-
-    // Call music brainz lookups to get detailed information about the artist and return it
-    const lookupRes = await fetch(`https://musicbrainz.org/ws/2/artist/${targetArtistId}?inc=url-rels&fmt=json`);
-    const targetArtistMB: MBLookupArtist = await lookupRes.json();
-
-    return targetArtistMB;
+    return searchResults;
   } catch (error: any) {
     throw new Error(error.message);
   }

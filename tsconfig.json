@@ -21,8 +21,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/fonts": ["./app/styles/fonts"],
-      "@/scss/*": ["./app/styles/scss/*"],
+      "@/fonts": ["./styles/fonts"],
+      "@/scss/*": ["./styles/scss/*"],
       "@/assets/*": ["./app/_assets/*"],
       "@/lib/*": ["./app/_lib/*"]
     }

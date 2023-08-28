@@ -42,11 +42,9 @@ async function getFromLFM({ params, values }: Params) {
     }).join('&');
   }
 
-  const url = `${BASE_URL}?${requestParams}&api_key${process.env.LFM_KEY}&fmt=json`;
-
+  const url = `${BASE_URL}?${requestParams}&api_key=${process.env.LFM_KEY}&format=json`;
   try {
     const res = await fetch(url);
-
     return await res.json();
   } catch (error: any) {
     throw new Error(error.message);
