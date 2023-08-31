@@ -6,13 +6,13 @@ import React, {
 import classnames from 'classnames';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useMediaQuery } from 'react-responsive';
 import Icon, { IconVariants } from '../icon';
 
 export type NavLinkType = {
   href: string
   name: string
+  id: string
   icon?: IconVariants | undefined
 };
 
@@ -37,9 +37,9 @@ const fallbackLinkProps: LinkProps = {
 
 export default function MainNav({ navLinks }: Props) {
   const storageLinkProps: LinkProps = window.localStorage.getItem('linkProps') as unknown as LinkProps || fallbackLinkProps;
-  /* activeLink state defined to keep it stored and extract it's props only when the path changes */
-  const [activeLink, setActiveLink] = useState<HTMLAnchorElement | null>(null);
+
   /* Props needed to position the highlighting element of the nav component */
+  /* Storage is used to keep track of last active link on page reload */
   const [activeLinkProps, setActiveLinkProps] = useState<LinkProps>({
     x: storageLinkProps?.x || 0,
     y: storageLinkProps?.y || 0,
@@ -47,12 +47,12 @@ export default function MainNav({ navLinks }: Props) {
     height: storageLinkProps?.height || 0,
   });
 
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+
   /* Get pathname to know which link is currently active */
   const pathname = usePathname();
   /* Ref needed to ensure link gets highlighted on first load */
-  const firstLoadActiveLink = useRef<HTMLAnchorElement>(null);
-
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  const activeLink = useRef<HTMLAnchorElement>(null);
 
   /* Save props to local storage to correctly place highlight on first load */
   const saveToStorage = (linkProps: LinkProps) => {
@@ -71,25 +71,21 @@ export default function MainNav({ navLinks }: Props) {
     saveToStorage(newActiveLinkProps);
   }, []);
 
-  const handleClick = (evt: React.MouseEvent<HTMLAnchorElement>) => {
-    setActiveLink(evt.currentTarget);
-  };
-
   const updateFromActiveLink = useCallback(() => {
-    updateActiveLinkProps(activeLink);
+    updateActiveLinkProps(activeLink.current);
   }, [activeLink, updateActiveLinkProps]);
-
-  /* Effect to set first load active link props */
-  useEffect(() => {
-    updateActiveLinkProps(firstLoadActiveLink.current);
-  }, [updateActiveLinkProps]);
 
   /* Effect to make sure the highlight only occurs when the pathname changes */
   useEffect(() => {
-    if (activeLink === null) return;
     updateFromActiveLink();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname, updateFromActiveLink]);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateFromActiveLink);
+    return () => {
+      window.removeEventListener('resize', updateFromActiveLink);
+    };
+  }, [updateFromActiveLink]);
 
   const navClassName = classnames('main-nav', isTablet ? 'main-nav--tablet' : null);
 
@@ -105,9 +101,12 @@ export default function MainNav({ navLinks }: Props) {
     >
       {
         navLinks.map((navLink) => {
-          const { href, name, icon } = navLink;
+          const {
+            href, name, icon, id,
+          } = navLink;
 
           const isActive = pathname === href;
+
           const classes = classnames(
             'nav-link',
             isActive ? 'nav-link--active' : null,
@@ -118,9 +117,8 @@ export default function MainNav({ navLinks }: Props) {
             <Link
               href={href}
               className={classes}
-              key={name + href}
-              onClick={handleClick}
-              ref={isActive ? firstLoadActiveLink : null}
+              key={id}
+              ref={isActive ? activeLink : null}
             >
               {
                 icon !== undefined && (

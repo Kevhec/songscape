@@ -2,6 +2,7 @@ import React from 'react';
 import '@/scss/layouts/app.scss';
 import MainNav, { NavLinkType } from '@/components/navigation/MainNav';
 import { lato } from '../../styles/fonts';
+import generateRandomId from '../_lib/generateRandomId';
 
 interface Props {
   children: React.ReactNode
@@ -9,10 +10,18 @@ interface Props {
 
 export default function AppLayout({ children }: Props) {
   const navLinks: NavLinkType[] = [
-    { href: '/home', name: 'Home', icon: 'home' },
-    { href: '/discover', name: 'Discover', icon: 'discover' },
-    { href: '/search', name: 'Search', icon: 'search' },
-    { href: '/favorites', name: 'Favorites', icon: 'favorites' },
+    {
+      href: '/home', name: 'Home', icon: 'home', id: generateRandomId(),
+    },
+    {
+      href: '/discover', name: 'Discover', icon: 'discover', id: generateRandomId(),
+    },
+    {
+      href: '/search', name: 'Search', icon: 'search', id: generateRandomId(),
+    },
+    {
+      href: '/favorites', name: 'Favorites', icon: 'favorites', id: generateRandomId(),
+    },
   ];
 
   return (
