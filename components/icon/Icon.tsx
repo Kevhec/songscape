@@ -1,4 +1,5 @@
 import React from 'react';
+import type { IconComponentMapping, IconVariants } from '@/types';
 import {
   Discover, Favorite, Home, Search,
 } from './variants';
@@ -6,19 +7,6 @@ import './index.css';
 import Location from './variants/Location';
 import ArrowRight from './variants/ArrowRight';
 import ArrowLeft from './variants/ArrowLeft';
-
-export type IconVariants =
-  'home'
-  | 'discover'
-  | 'search'
-  | 'favorites'
-  | 'location'
-  | 'arrow-left'
-  | 'arrow-right';
-
-type IconComponentMapping = {
-  [key in IconVariants]: React.FC<{ fill?: string; width?: number; height?: number }>;
-};
 
 interface Props {
   variant: IconVariants

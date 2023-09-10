@@ -1,10 +1,5 @@
 import React from 'react';
-
-export interface Variant {
-  fill?: string
-  width?: number
-  height?: number
-}
+import type { Variant } from '@/types';
 
 export default function Discover({ fill, width, height }: Variant) {
   return (

@@ -1,5 +1,5 @@
+import type { LFMArtist } from '@/types';
 import getFromLFM from './getFromLFM';
-import { LFMArtist } from './getTopArtists';
 
 export default async function getArtistInfo(artistName: string) {
   try {

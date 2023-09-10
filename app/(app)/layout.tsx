@@ -2,7 +2,7 @@ import React from 'react';
 import '@/scss/layouts/app.scss';
 import MainNav, { NavLinkType } from '@/components/navigation/MainNav';
 import { lato } from '../../styles/fonts';
-import generateRandomId from '../_lib/generateRandomId';
+import generateRandomId from '../_lib/api/generateRandomId';
 
 interface Props {
   children: React.ReactNode

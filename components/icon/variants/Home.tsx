@@ -1,5 +1,5 @@
 import React from 'react';
-import { Variant } from './Discover';
+import type { Variant } from '@/types';
 
 export default function Home({ fill, width, height }: Variant) {
   return (

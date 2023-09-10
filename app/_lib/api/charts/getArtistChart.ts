@@ -1,16 +1,10 @@
-import getTopArtists, { LFMTag } from '../lastfm/getTopArtists';
+import type { ChartArtist } from '@/app/_lib/types/LFMTypes';
+import getTopArtists from '../lastfm/getTopArtists';
 import findWithNameMB from '../musicbrainz/findWithNameMB';
 import getArtistInfo from '../lastfm/getArtistInfo';
 import getArtistPicture from '../musicbrainz/getArtistPicture';
 import getArtistLookup from '../musicbrainz/getArtistLookup';
-
-interface ChartArtist {
-  name: string
-  mbid: number
-  location: string
-  tags: LFMTag[] | undefined
-  picture: string | undefined
-}
+import generateRandomId from '../generateRandomId';
 
 export default async function getArtistChart(): Promise<ChartArtist[]> {
   try {
@@ -44,7 +38,7 @@ export default async function getArtistChart(): Promise<ChartArtist[]> {
 
       result.name = LFMArtist.name || 'Not found';
       result.location = MBArtist?.area?.name || 'Not found';
-      result.tags = LFMArtist.tags?.tag;
+      result.tags = LFMArtist.tags?.tag.map((tag) => ({ ...tag, id: generateRandomId() }));
       result.picture = getArtistPicture(MBArtist.relations);
 
       return result;

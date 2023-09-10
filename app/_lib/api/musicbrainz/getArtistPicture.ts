@@ -1,4 +1,4 @@
-import { MBRelation } from './findWithNameMB';
+import { MBRelation } from '@/types';
 
 export default function getArtistPicture(relations: MBRelation[]):string | undefined {
   let url;

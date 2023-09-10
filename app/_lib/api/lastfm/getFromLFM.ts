@@ -1,6 +1,6 @@
-const BASE_URL = 'http://ws.audioscrobbler.com/2.0/';
+import { LFM_API_KEY, LFM_BASE_URL } from '@/lib/constants';
 
-type Method = 'topArtists' | 'artistInfo' | 'artistName' | 'limit' ;
+type Method = 'topArtists' | 'topTracks' | 'artistInfo' | 'artistName' | 'limit' ;
 
 interface Params {
   params: Method[] | Method
@@ -16,18 +16,21 @@ type ParamToValueMap = {
 
 const paramToValueMap: ParamToValueMap = {
   topArtists: 'method=chart.gettopartists',
+  topTracks: 'mothod=chart.gettoptracks',
   artistInfo: 'method=artist.getinfo',
   artistName: 'artist=',
   limit: 'limit=',
 };
 
-async function getFromLFM({ params, values }: Params) {
-  let requestParams;
+const parseParams = ({ params, values }: Params) => {
+  let parsedParams = '';
+
   if (typeof params === 'string') {
-    requestParams = paramToValueMap[params];
+    parsedParams = paramToValueMap[params];
   } else {
-    requestParams = params.map((method) => {
+    parsedParams = params.map((method) => {
       let value: string;
+
       switch (method) {
         case 'artistName':
           value = paramToValueMap[method] + values.artistName;
@@ -38,16 +41,32 @@ async function getFromLFM({ params, values }: Params) {
         default:
           value = paramToValueMap[method];
       }
+
       return value;
     }).join('&');
   }
 
-  const url = `${BASE_URL}?${requestParams}&api_key=${process.env.LFM_KEY}&format=json`;
+  return parsedParams;
+};
+
+async function getFromLFM(params: Params) {
+  const requestParams = parseParams(params);
+
+  const url = `${LFM_BASE_URL}/?${requestParams}&api_key=${LFM_API_KEY}&format=json`;
+
   try {
     const res = await fetch(url);
-    return await res.json();
+
+    if (res.ok) {
+      return await res.json();
+    }
+
+    throw new Error(
+      'Something went wrong while getting data from LastFM',
+      { cause: { status: res.status } },
+    );
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error('Error while trying to connect to lastFM', { cause: error });
   }
 }
 

@@ -3,21 +3,33 @@
 import React, { useEffect, useRef } from 'react';
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperOptions } from 'swiper/types';
+import useSliderElements from '@/hooks/useSliderElements';
 import Icon from './icon';
+import type { IconVariants } from './icon';
 
 type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
 
-interface Props {
-  elements: React.ReactNode[]
+interface SliderIcon {
+  variant: IconVariants
+  fill: `#${string}`
 }
 
-export default function Slider({ elements }: Props) {
+export interface SliderElement {
+  item: React.ReactNode
+  id: string | number
+}
+
+interface Props {
+  elements: React.ReactNode[]
+  leftControlIcon?: SliderIcon
+  rightControlIcon?: SliderIcon
+}
+
+export default function Slider({ elements, leftControlIcon, rightControlIcon }: Props) {
   const swiperRef = useRef<SwiperRef>(null as any);
-  const nextEl = useRef<HTMLDivElement>(null as any);
-  const prevEl = useRef<HTMLDivElement>(null as any);
+  const [sliderElements] = useSliderElements({ elements });
 
   useEffect(() => {
-    // Register swiper web component
     register();
 
     const params: SwiperOptions = {
@@ -28,14 +40,9 @@ export default function Slider({ elements }: Props) {
       cssMode: true,
       navigation: {
         enabled: true,
-        nextEl: nextEl.current,
-        prevEl: prevEl.current,
+        prevEl: '.swiper-prevElement',
+        nextEl: '.swiper-nextElement',
       },
-      injectStyles: [
-        `
-
-        `,
-      ],
     };
 
     Object.assign(swiperRef?.current, params);
@@ -43,28 +50,28 @@ export default function Slider({ elements }: Props) {
     swiperRef?.current?.initialize();
   }, []);
 
-  /* ToDo: Before production update id generation to use crypto.randomUUID */
-  const elementsToRender = elements.map((element, i) => ({
-    item: element,
-    id: i,
-  }));
-
   return (
     <div className="mySwiper">
       <swiper-container init={'false' as unknown as boolean} ref={swiperRef}>
         {
-          elementsToRender.map((element) => (
+          sliderElements?.map((element) => (
             <swiper-slide key={element.id}>
               {element.item}
             </swiper-slide>
           ))
         }
       </swiper-container>
-      <div className="swiper-prevElement" ref={prevEl}>
-        <Icon variant="arrow-left" fill="#9BBB9A" />
+      <div className="swiper-prevElement">
+        <Icon
+          variant={`${leftControlIcon?.variant || 'arrow-left'}`}
+          fill={`${leftControlIcon?.fill || '#9BBB9A'}`}
+        />
       </div>
-      <div className="swiper-nextElement" ref={nextEl}>
-        <Icon variant="arrow-right" fill="#9BBB9A" />
+      <div className="swiper-nextElement">
+        <Icon
+          variant={`${rightControlIcon?.variant || 'arrow-right'}`}
+          fill={`${rightControlIcon?.fill || '#9BBB9A'}`}
+        />
       </div>
     </div>
   );

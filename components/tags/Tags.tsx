@@ -1,5 +1,6 @@
 import React from 'react';
-import type { LFMTag } from '@/app/(app)/home/page';
+
+import type { LFMTag } from '@/types';
 import Tag from './Tag';
 
 interface Props {
@@ -11,7 +12,7 @@ export default function Tags({ tags }: Props) {
     <div className="tags">
       {
         tags.slice(undefined, 3).map((tag) => (
-          <Tag tag={tag.name} variant="dark" />
+          <Tag key={tag.id} tag={tag.name} variant="dark" />
         ))
       }
     </div>

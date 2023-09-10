@@ -24,7 +24,8 @@
       "@/fonts": ["./styles/fonts"],
       "@/scss/*": ["./styles/scss/*"],
       "@/assets/*": ["./app/_assets/*"],
-      "@/lib/*": ["./app/_lib/*"]
+      "@/lib/*": ["./app/_lib/*"],
+      "@/types": ["./app/_lib/types/"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./next.config.js", "swiper.d.ts"],
