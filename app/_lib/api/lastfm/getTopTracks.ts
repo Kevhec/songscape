@@ -1,4 +1,4 @@
-import type { LFMTrack } from '@/types';
+/* import type { LFMTrack } from '@/types';
 import getFromLFM from './getFromLFM';
 
 export interface LFMArtistChart {
@@ -15,9 +15,10 @@ export default async function getTopTracks(): Promise<LFMTrack[]> {
       values: { limit: 5 },
     });
 
-    const tracksList: = 
+    const tracksList: =
     return artistsList;
   } catch (error: any) {
     throw new Error(error.message);
   }
 }
+ */

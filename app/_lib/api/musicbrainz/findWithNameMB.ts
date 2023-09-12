@@ -14,6 +14,7 @@ export default async function searchByName(artistName: string):Promise<MBSearchA
       url: `${MB_BASE_URL}/artist/?query=artist:${fmtName}&limit=10&fmt=json`,
       options: {
         headers: MB_USERAGENT,
+        cache: 'force-cache',
       },
     });
     const { artists: searchResults }: { artists: MBSearchArtist[] } = searchRes;

@@ -1,10 +1,10 @@
 import type { ChartArtist } from '@/app/_lib/types/LFMTypes';
 import getTopArtists from '../lastfm/getTopArtists';
-import findWithNameMB from '../musicbrainz/findWithNameMB';
 import getArtistInfo from '../lastfm/getArtistInfo';
 import getArtistPicture from '../musicbrainz/getArtistPicture';
 import getArtistLookup from '../musicbrainz/getArtistLookup';
 import generateRandomId from '../generateRandomId';
+import searchByName from '../musicbrainz/findWithNameMB';
 
 export default async function getArtistChart(): Promise<ChartArtist[]> {
   try {
@@ -16,7 +16,7 @@ export default async function getArtistChart(): Promise<ChartArtist[]> {
       const result: ChartArtist = {
         name: '',
         location: '',
-        mbid: 0,
+        mbid: '',
         tags: [],
         picture: '',
       };
@@ -25,7 +25,7 @@ export default async function getArtistChart(): Promise<ChartArtist[]> {
       const LFMArtist = await getArtistInfo(LFMChartArtist.name);
 
       if (LFMArtist.mbid === null || LFMArtist.mbid === undefined) {
-        const nameSearchResults = await findWithNameMB(LFMChartArtist.name);
+        const nameSearchResults = await searchByName(LFMChartArtist.name);
         const bestMatch = nameSearchResults?.find((artist) => artist.name === LFMChartArtist.name);
         if (bestMatch?.id) {
           result.mbid = bestMatch.id;

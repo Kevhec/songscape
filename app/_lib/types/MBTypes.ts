@@ -1,7 +1,7 @@
 /* MB Types */
 
 interface MBSearchArtist {
-  id: number
+  id: string
   name: string
   score: number
 }
@@ -14,7 +14,7 @@ type MBRelation = {
 };
 
 interface MBLookupArtist {
-  id: number
+  id: string
   name: string
   relations: MBRelation[]
   gender: string

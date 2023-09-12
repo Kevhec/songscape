@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperOptions } from 'swiper/types';
 import useSliderElements from '@/hooks/useSliderElements';
+import type { IconVariants } from '@/lib/types';
 import Icon from './icon';
-import type { IconVariants } from './icon';
 
 type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
 
@@ -25,8 +25,8 @@ interface Props {
   rightControlIcon?: SliderIcon
 }
 
-export default function Slider({ elements, leftControlIcon, rightControlIcon }: Props) {
-  const swiperRef = useRef<SwiperRef>(null as any);
+const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => {
+  const swiperRef = useRef<SwiperRef | null>(null);
   const [sliderElements] = useSliderElements({ elements });
 
   useEffect(() => {
@@ -45,9 +45,10 @@ export default function Slider({ elements, leftControlIcon, rightControlIcon }: 
       },
     };
 
-    Object.assign(swiperRef?.current, params);
-
-    swiperRef?.current?.initialize();
+    if (swiperRef.current) {
+      Object.assign(swiperRef?.current, params);
+      swiperRef?.current?.initialize();
+    }
   }, []);
 
   return (
@@ -75,4 +76,6 @@ export default function Slider({ elements, leftControlIcon, rightControlIcon }: 
       </div>
     </div>
   );
-}
+});
+
+export default Slider;

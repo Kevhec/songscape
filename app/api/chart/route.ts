@@ -1,19 +1,20 @@
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-import getArtistChart from '@/lib/api/charts/getArtistChart';
+import getTopArtists from '@/app/_lib/api/lastfm/getTopArtists';
+import { LFMArtist } from '@/app/_lib/types';
 
 export async function GET() {
   const headerList = headers();
   const method = headerList.get('method');
-  let data;
+  let data: LFMArtist[] = [];
 
   try {
     switch (method) {
       case 'artist':
-        data = await getArtistChart();
+        data = await getTopArtists();
         break;
       case 'tracks':
-        console.log('Tracks chart');
+        /*         console.log('Tracks chart'); */
         break;
       default:
         throw new Error(`Method "${method}" does not exists`);

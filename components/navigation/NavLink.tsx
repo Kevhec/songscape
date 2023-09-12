@@ -1,3 +1,5 @@
+'use client';
+
 import React, { Ref, forwardRef } from 'react';
 import Link from 'next/link';
 import type { IconVariants } from '@/types';
