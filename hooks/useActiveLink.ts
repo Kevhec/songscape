@@ -12,7 +12,15 @@ const fallbackLinkProps: NavLinkProps = {
 };
 
 function useActiveLink(activeLink: HTMLAnchorElement | null) {
-  const storageLinkProps: NavLinkProps = window.localStorage.getItem('linkProps') as unknown as NavLinkProps || fallbackLinkProps;
+  let storageLinkProps: NavLinkProps = {
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  };
+  if (typeof window !== 'undefined') {
+    storageLinkProps = window.localStorage.getItem('linkProps') as unknown as NavLinkProps || fallbackLinkProps;
+  }
 
   /* Props needed to position the highlighting element of the nav component */
   /* Storage is used to keep track of last active link on page reload */
@@ -28,7 +36,9 @@ function useActiveLink(activeLink: HTMLAnchorElement | null) {
 
   /* Save props to local storage to correctly place highlight on first load */
   const saveToStorage = (linkProps: NavLinkProps) => {
-    window.localStorage.setItem('linkProps', JSON.stringify(linkProps));
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('linkProps', JSON.stringify(linkProps));
+    }
   };
 
   const updateActiveLinkProps = useCallback((element: HTMLAnchorElement | null) => {

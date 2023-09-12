@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+/* import { NextResponse } from 'next/server';
 
 export default function errorHandler(error: Error) {
   if (error instanceof SyntaxError) {
@@ -9,3 +9,4 @@ export default function errorHandler(error: Error) {
     );
   }
 }
+ */

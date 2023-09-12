@@ -4,7 +4,7 @@ import RateLimiter from '@/lib/utils/rateLimiter';
 
 const rateLimiter = RateLimiter.getInstance();
 
-async function getArtistLookup(mbid: number): Promise<MBLookupArtist> {
+async function getArtistLookup(mbid: string): Promise<MBLookupArtist> {
   try {
     const json: MBLookupArtist = await rateLimiter.fetchRequest({
       url: `${MB_BASE_URL}/artist/${mbid}?inc=url-rels&fmt=json`,

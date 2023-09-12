@@ -23,7 +23,7 @@ interface LFMArtist {
   name: string
   playcount: number
   listeners: number
-  mbid: number
+  mbid: string
   tags?: {
     tag: LFMTag[]
   }
@@ -37,7 +37,7 @@ interface LFMArtistChart {
 
 interface ChartArtist {
   name: string
-  mbid: number
+  mbid: string
   location: string
   tags?: LFMTag[]
   picture?: string

@@ -54,7 +54,8 @@ class RateLimiter {
       const now = Date.now();
       const timeSinceLastRequest = now - this.lastRequestTime;
 
-      const delayTime = Math.max(0, 1050 - timeSinceLastRequest);
+      const minDelay = 1050; // Minimum 1.050 second delay
+      const delayTime = Math.max(minDelay - timeSinceLastRequest, 0);
       this.lastRequestTime = now + delayTime;
 
       // Apply calculated delay and place response on cache
