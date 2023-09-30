@@ -34,8 +34,8 @@ export async function GET(request: Request) {
 
     result.name = LFMArtist.name || 'Not found';
     result.location = MBArtist?.area?.name || 'Not found';
-    result.tags = LFMArtist.tags?.tag.map((tag) => ({ ...tag, id: generateRandomId() }));
-    result.picture = getArtistPicture(MBArtist.relations);
+    result.tags = LFMArtist.tags?.tag.map((tag) => ({ ...tag, id: generateRandomId() })) || [];
+    result.picture = getArtistPicture(MBArtist.relations) || '';
 
     return NextResponse.json({ artist: result });
   } catch (error: any) {
