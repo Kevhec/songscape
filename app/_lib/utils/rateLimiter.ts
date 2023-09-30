@@ -12,7 +12,7 @@ class RateLimiter {
 
   // Cache object to disable throtting on already fetched requests, needs to have a
   // response caching system for it to work properly, on this case NextJS caching system
-  private cache: { [url: string]: boolean } = {};
+  /*   private cache: { [url: string]: boolean } = {}; */
 
   // Queue for requests using promise.resolve funtion
   private queue = Promise.resolve();
@@ -43,11 +43,11 @@ class RateLimiter {
   public async fetchRequest({ url, options }: FetchRequest) {
     // Skip queue if request is already in cache
     try {
-      if (this.cache[url]) {
+      /* if (this.cache[url]) {
         // Request is cached, no need for rate limiting
         const response = await fetch(url, options);
         return await response.json();
-      }
+      } */
 
       // Get current time and extract last request time to check how much time has passed
       // Since last request and calc delay time in consecuence
@@ -62,7 +62,7 @@ class RateLimiter {
       const jsonResponse = await this.queue.then(async () => {
         await delay(delayTime);
         const response = await fetch(url, options);
-        this.cache[url] = true;
+        /* this.cache[url] = true; */
         return response.json();
       });
 

@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
 import getTopArtists from '@/app/_lib/api/lastfm/getTopArtists';
 import { LFMArtist } from '@/app/_lib/types';
 
-export async function GET() {
-  const headerList = headers();
-  const method = headerList.get('method');
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const method = searchParams.get('method');
+
   let data: LFMArtist[] = [];
 
   try {
     switch (method) {
-      case 'artist':
+      case 'artists':
         data = await getTopArtists();
         break;
       case 'tracks':

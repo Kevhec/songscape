@@ -49,7 +49,7 @@ export default function MainNav({ navLinks }: Props) {
               className={classes}
               href={href}
               icon={icon}
-              isActive
+              isActive={isActive}
               name={name}
               key={id}
               ref={isActive ? activeLinkRef : null}

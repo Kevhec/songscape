@@ -1,6 +1,8 @@
 'use client';
 
-import React, { Ref, forwardRef } from 'react';
+import React, {
+  Ref, forwardRef,
+} from 'react';
 import Link from 'next/link';
 import type { IconVariants } from '@/types';
 import Icon from '../icon';
