@@ -9,6 +9,11 @@ $primary-green: #9BBB9A;
 $secondary-desaturated-green: #5E7062;
 $difference-yellow-black: #cbce75;
 
+$phone: 375px;
+$tablet: 768px;
+$small-pc: 1024px;
+$big-pc: 1440px;
+
 @function rem ($px: number) {
   $result: calc($px / 16) + rem;
   @return $result

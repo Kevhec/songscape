@@ -31,6 +31,15 @@ swiper-slide {
   }
 }
 
+.swiper-control {
+  cursor: pointer;
+  display: none;
+
+  @include mediaq($tablet) {
+    display: flex;
+  }
+}
+
 .swiper-prevElement {
   background: linear-gradient(to right, rgba(33, 37, 41, 1) 0%, rgba(33, 37, 41, 0.00) 100%);
   left: 0;

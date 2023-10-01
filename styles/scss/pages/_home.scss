@@ -4,6 +4,11 @@
   display: flex;
   gap: 4px;
   margin-bottom: rem(16);
+  padding: 0 rem(16);
+
+  @include mediaq($tablet) {
+    padding: 0;
+  }
 
   h1 {
     font-size: rem(18);

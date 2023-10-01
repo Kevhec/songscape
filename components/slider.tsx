@@ -43,6 +43,16 @@ const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => 
         prevEl: '.swiper-prevElement',
         nextEl: '.swiper-nextElement',
       },
+      injectStyles: [
+        `
+          .swiper-wrapper {
+            padding: 0 1rem;
+            @media screen and (min-width: 768px) {
+              padding: 0;
+            }
+          }
+        `,
+      ],
     };
 
     if (swiperRef.current) {
@@ -62,13 +72,13 @@ const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => 
           ))
         }
       </swiper-container>
-      <div className="swiper-prevElement">
+      <div className="swiper-prevElement swiper-control">
         <Icon
           variant={`${leftControlIcon?.variant || 'arrow-left'}`}
           fill={`${leftControlIcon?.fill || '#9BBB9A'}`}
         />
       </div>
-      <div className="swiper-nextElement">
+      <div className="swiper-nextElement swiper-control">
         <Icon
           variant={`${rightControlIcon?.variant || 'arrow-right'}`}
           fill={`${rightControlIcon?.fill || '#9BBB9A'}`}

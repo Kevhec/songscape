@@ -5,12 +5,12 @@ import TopArtists from '@/components/sections/TopArtists';
 
 export default async function Page() {
   return (
-    <>
-      <div className="home-heading">
+    <div className="top-artists">
+      <div className="top-artists__heading">
         <Image src={icon25} alt="25" />
         <h1>Artists that made history</h1>
       </div>
       <TopArtists />
-    </>
+    </div>
   );
 }

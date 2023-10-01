@@ -1,12 +1,16 @@
 @use '@/scss/global/variables' as *;
 
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: rem(4);
-  height: rem(44);
-  overflow-y: auto;
+  display: none;
+
+  @include mediaq ($tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: rem(4);
+    height: rem(44);
+    overflow-y: auto;
+  }
 }
 
 .tag {

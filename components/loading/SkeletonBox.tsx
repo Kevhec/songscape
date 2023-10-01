@@ -8,7 +8,7 @@ interface Props {
 export default function SkeletonBox({ width, height }: Props) {
   return (
     <div
-      className="skeleton__box"
+      className="skeleton"
       style={{
         '--element-width': width,
         '--element-height': height,
