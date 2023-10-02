@@ -1,11 +1,11 @@
 import { HOSTNAME } from '../constants';
-import { LFMArtist } from '../types';
+import { LFMArtist, LFMTrack } from '../types';
 
 interface Params {
   method: 'artists' | 'tracks'
 }
 
-export default async function getChartClient({ method }: Params): Promise<LFMArtist[]> {
+async function getChartClient({ method }: Params): Promise<LFMArtist[] | LFMTrack[]> {
   try {
     const response = await fetch(`${HOSTNAME}/api/chart/?method=${method}`);
 
@@ -14,3 +14,5 @@ export default async function getChartClient({ method }: Params): Promise<LFMArt
     return [];
   }
 }
+
+export default getChartClient;

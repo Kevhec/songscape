@@ -4,13 +4,13 @@ import React, { memo, useEffect, useRef } from 'react';
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperOptions } from 'swiper/types';
 import useSliderElements from '@/hooks/useSliderElements';
-import type { IconVariants } from '@/lib/types';
+import type { IconVariant } from '@/lib/types';
 import Icon from './icon';
 
 type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
 
 interface SliderIcon {
-  variant: IconVariants
+  variant: IconVariant
   fill: `#${string}`
 }
 

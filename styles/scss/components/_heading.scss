@@ -1,0 +1,15 @@
+@use '@/scss/global/variables' as *;
+
+.heading {
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: rem(16);
+    padding: 0 rem(16);
+
+    @include mediaq($tablet) {
+      padding: 0;
+    }
+  }
+}

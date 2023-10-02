@@ -1,18 +1,20 @@
 import React from 'react';
-import type { IconComponentMapping, IconVariants } from '@/types';
-import {
-  Discover, Favorite, Home, Search,
-} from './variants';
+import type { IconComponentMapping, IconVariant, IconVariantProps } from '@/types';
 import './index.css';
-import Location from './variants/Location';
-import ArrowRight from './variants/ArrowRight';
-import ArrowLeft from './variants/ArrowLeft';
+import {
+  ArrowLeft,
+  Discover,
+  Favorite,
+  Home,
+  Search,
+  Location,
+  ArrowRight,
+  EmptyHeart,
+  Number25,
+} from './variants';
 
-interface Props {
-  variant: IconVariants
-  fill?: string
-  width?: number
-  height?: number
+interface Props extends IconVariantProps {
+  variant: IconVariant
 }
 
 const iconComponentMapping: IconComponentMapping = {
@@ -23,14 +25,23 @@ const iconComponentMapping: IconComponentMapping = {
   location: Location,
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
+  'empty-heart': EmptyHeart,
+  'number-25': Number25,
 };
 
 export default function Icon({
-  variant, fill, width, height,
+  variant, fill, width, height, stroke, style, className,
 } : Props) {
   const IconComponent = iconComponentMapping[variant];
 
   return (
-    <IconComponent fill={fill} width={width} height={height || width} />
+    <IconComponent
+      fill={fill}
+      width={width}
+      height={height || width}
+      stroke={stroke}
+      style={style || {}}
+      className={className}
+    />
   );
 }

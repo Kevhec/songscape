@@ -1,18 +1,25 @@
-export type IconVariants =
+import React from 'react';
+
+export type IconVariant =
   'home'
   | 'discover'
   | 'search'
   | 'favorites'
   | 'location'
   | 'arrow-left'
-  | 'arrow-right';
+  | 'arrow-right'
+  | 'empty-heart'
+  | 'number-25';
 
-export interface Variant {
+export interface IconVariantProps {
   fill?: string
+  stroke?: string
   width?: number
   height?: number
+  style?: React.CSSProperties
+  className?: string
 }
 
 export type IconComponentMapping = {
-  [key in IconVariants]: React.FC<{ fill?: string; width?: number; height?: number }>;
+  [key in IconVariant]: React.FC<IconVariantProps>;
 };

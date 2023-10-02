@@ -1,18 +1,5 @@
 /* LFM Types */
 
-interface LFMTrack {
-  name: string
-  duration: number
-  playcount: number
-  listeners: number
-  mbid: number
-  artist: {
-    name: string
-    mbid: number
-    url: string
-  }
-}
-
 type LFMTag = {
   name: string
   url: string
@@ -43,10 +30,24 @@ interface ChartArtist {
   picture?: string
 }
 
+interface LFMTrack {
+  name: string
+  duration: number
+  playcount: number
+  listeners: number
+  mbid?: string
+  url: string
+  artist: {
+    name: string
+    mbid?: string
+    url: string
+  }
+}
+
 export type {
-  LFMTrack,
   LFMArtist,
   LFMTag,
   LFMArtistChart,
   ChartArtist,
+  LFMTrack,
 };

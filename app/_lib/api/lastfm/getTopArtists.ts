@@ -1,4 +1,4 @@
-import { LFMArtist, LFMArtistChart } from '@/types';
+import type { LFMArtist, LFMArtistChart } from '@/types';
 import getFromLFM from './getFromLFM';
 
 export default async function getTopArtists(): Promise<LFMArtist[]> {

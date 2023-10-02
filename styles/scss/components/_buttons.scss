@@ -1,0 +1,62 @@
+@use "@/scss/global/variables" as *;
+
+.favorite-button {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 2;
+  padding: 2px;
+  border-radius: 50%;
+  border: unset;
+  background-color: $neutral-black;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    z-index: 1;
+    
+    @include mediaq($tablet) {
+      display: none;
+    }
+  }
+
+
+  &__icon {
+    transition: fill 150ms ease-in;
+    fill: $neutral-black;
+
+    &--clicked {
+      animation-name: pulse;
+      animation-duration: 300ms;
+      animation-timing-function: ease-in;
+    }
+
+    &--liked {
+      fill: $primary-yellow;
+    }
+  }
+  
+  @include mediaq($small-pc) {
+    &:hover:not(.favorite-button--liked) {
+      .favorite-button__icon {
+        fill: #ecf39eab;
+      }
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      transform: scale(1.2) rotate(-15deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+}

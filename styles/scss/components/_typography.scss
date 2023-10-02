@@ -1,0 +1,14 @@
+@use '@/scss/global/variables' as *;
+
+.typography {
+  &__variant {
+    line-height: 1;
+    &--h1 {
+      font-size: rem(18);
+
+      @include mediaq($tablet) {
+        font-size: rem(24);
+      }
+    }
+  }
+}

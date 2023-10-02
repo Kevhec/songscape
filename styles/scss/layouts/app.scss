@@ -25,7 +25,7 @@ header {
   padding: rem(10) rem(16);
 
   @include mediaq(768px) {
-    padding: rem(24) 0;
+    padding: 0;
     grid-column: 1 / 3;
     display: grid;
     grid-template-columns: rem(75) 1fr;
@@ -40,10 +40,11 @@ header {
   --tablet-logoSize: 48px;
 
   @include mediaq(768px) {
+    padding-top: rem(12);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     border-right: 1px solid $secondary-desaturated-green;
   
     img {
@@ -51,8 +52,9 @@ header {
       height: var(--tablet-logoSize);
     }
   }
-
+  
   @include mediaq(1024px) {
+    padding-top: rem(24);
     img {
       width: unset;
       height: unset;
@@ -87,7 +89,7 @@ aside {
   }
 
   @include mediaq(1024px) {
-    padding: rem(64) rem(24) rem(24);
+    padding: rem(76) rem(24) rem(24);
   }
 }
 
