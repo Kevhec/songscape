@@ -14,6 +14,7 @@ interface LFMArtist {
   tags?: {
     tag: LFMTag[]
   }
+  id: string;
 }
 
 interface LFMArtistChart {
@@ -42,6 +43,7 @@ interface LFMTrack {
     mbid?: string
     url: string
   }
+  id: string;
 }
 
 export type {

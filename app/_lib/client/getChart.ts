@@ -5,7 +5,7 @@ interface Params {
   method: 'artists' | 'tracks'
 }
 
-async function getChartClient({ method }: Params): Promise<LFMArtist[] | LFMTrack[]> {
+async function getChartClient({ method }: Params): Promise<LFMArtist[]> | Promise<LFMTrack[]> {
   try {
     const response = await fetch(`${HOSTNAME}/api/chart/?method=${method}`);
 

@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import getTopArtists from '@/app/_lib/api/lastfm/getTopArtists';
-import { ChartDataTypes } from '@/app/_lib/types';
+import type { ChartDataTypes } from '@/app/_lib/types';
 import getTopTracks from '@/app/_lib/api/lastfm/getTopTracks';
+import generateRandomId from '@/app/_lib/api/generateRandomId';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -23,7 +24,13 @@ export async function GET(request: Request) {
 
     // If data exists return it succesfully
     if (data) {
-      return NextResponse.json([...data], {
+      const dataWithId = data.map((el) => (
+        {
+          ...el,
+          id: generateRandomId(),
+        }
+      ));
+      return NextResponse.json([...dataWithId], {
         status: 200,
       });
     }

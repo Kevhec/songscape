@@ -16,7 +16,7 @@ type ParamToValueMap = {
 
 const paramToValueMap: ParamToValueMap = {
   topArtists: 'method=chart.gettopartists',
-  topTracks: 'mothod=chart.gettoptracks',
+  topTracks: 'method=chart.gettoptracks',
   artistInfo: 'method=artist.getinfo',
   artistName: 'artist=',
   limit: 'limit=',
