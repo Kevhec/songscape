@@ -37,6 +37,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'coverartarchive.org',
+        port: '',
+        pathname: '/release/**',
+      },
     ],
   },
 };

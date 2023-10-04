@@ -3,6 +3,7 @@ const LFM_BASE_URL = 'http://ws.audioscrobbler.com/2.0';
 const LFM_API_KEY = process.env.LFM_KEY;
 const MB_BASE_URL = 'https://musicbrainz.org/ws/2';
 const MB_USERAGENT = { 'User-Agent': 'songscape/1.0.0 (kevhec.dev@gmail.com)' };
+const COVER_ART_ARCHIVE_BASEURL = 'https://coverartarchive.org';
 
 export {
   HOSTNAME,
@@ -10,4 +11,5 @@ export {
   LFM_API_KEY,
   MB_BASE_URL,
   MB_USERAGENT,
+  COVER_ART_ARCHIVE_BASEURL,
 };

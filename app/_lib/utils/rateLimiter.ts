@@ -1,7 +1,7 @@
 import delay from './delay';
 
 interface FetchRequest {
-  url: string,
+  url: string | URL,
   options?: RequestInit
 }
 
