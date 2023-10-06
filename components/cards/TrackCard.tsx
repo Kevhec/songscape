@@ -12,12 +12,20 @@ export default async function TrackCard({ track }: Props) {
     artist, duration, name,
   } = track;
 
-  const response = await fetch(`${HOSTNAME}/api/track/getpicture/?name=${name}&artist=${artist.name}`, {
-    cache: 'no-cache'
-  });
+  const response = await fetch(`${HOSTNAME}/api/track/getpicture/?name=${name}&artist=${artist.name}`);
   const images: CoverArtArchiveImages = await response.json();
 
-  const imageSRC = images.thumbnails ? images?.thumbnails.small : images?.image || 'http://placekitten.com/200/300';
+  /* console.log({
+    name,
+    images: images.image,
+    thumbs: images.thumbnails,
+  }); */
+
+  const imageSRC = images.thumbnails && images.thumbnails.small !== ''
+    ? (images?.thumbnails.small || images.image)
+    : images?.image;
+
+  const formatName = (artistName: string) => artistName.replace('-', ' ');
 
   return (
     <div className="track">
@@ -29,8 +37,8 @@ export default async function TrackCard({ track }: Props) {
         className="track__image"
       />
       <div className="track__header">
-        <p>{`Artist: ${artist.name}`}</p>
-        <p>{`Name: ${name}`}</p>
+        <p className="track__paragraph">{`Artist: ${formatName(artist.name)}`}</p>
+        <p className="track__paragraph">{`Name: ${formatName(name)}`}</p>
       </div>
       <div className="track__play-info">
         <p>{`${duration}`}</p>

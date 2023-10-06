@@ -1,0 +1,10 @@
+.track {
+  &__image {
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__paragraph {
+    text-transform: capitalize;
+  }
+}
