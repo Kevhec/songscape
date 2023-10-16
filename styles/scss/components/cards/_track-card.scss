@@ -1,10 +1,43 @@
+@use '@/scss/global/variables' as *;
+
 .track {
+  display: flex;
+  gap: rem(16);
+
+  &:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+
   &__image {
     object-fit: cover;
     border-radius: 50%;
   }
 
-  &__paragraph {
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__data {
     text-transform: capitalize;
+    font-size: rem(16);
+    font-weight: 600;
+    line-height: 1;
+
+    &--songname {
+      font-weight: 700;
+      margin-bottom: rem(10);
+    }
+
+    &--artist {
+      font-size: rem(12);
+      color: $primary-yellow;
+    }
+
+    &--duration {
+      color: $primary-yellow;
+    }
   }
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import type { CoverArtArchiveImages, LFMTrack } from '@/app/_lib/types';
 import { HOSTNAME } from '@/app/_lib/constants';
+import msToMinutesAndSeconds from '@/app/_lib/utils/msToMinAndS';
+import formatToDuration from '@/app/_lib/utils/formatToDuration';
 
 interface Props {
   track: LFMTrack;
@@ -26,22 +28,28 @@ export default async function TrackCard({ track }: Props) {
     : images?.image;
 
   const formatName = (artistName: string) => artistName.replace('-', ' ');
+  const formatDuration = (ms: number) => {
+    const minutesAndSeconds = msToMinutesAndSeconds(ms);
+    return formatToDuration(minutesAndSeconds);
+  };
 
   return (
     <div className="track">
       <Image
         src={imageSRC}
         alt={`Picture of ${name}`}
-        width={170}
-        height={170}
+        width={48}
+        height={48}
         className="track__image"
       />
-      <div className="track__header">
-        <p className="track__paragraph">{`Artist: ${formatName(artist.name)}`}</p>
-        <p className="track__paragraph">{`Name: ${formatName(name)}`}</p>
-      </div>
-      <div className="track__play-info">
-        <p>{`${duration}`}</p>
+      <div className="track__body">
+        <div className="track__header">
+          <p className="track__data track__data--songname">{formatName(name)}</p>
+          <p className="track__data track__data--artist">{formatName(artist.name)}</p>
+        </div>
+        <div className="track__play-info">
+          <p className="track__data--duration">{`${formatDuration(duration)}`}</p>
+        </div>
       </div>
     </div>
   );

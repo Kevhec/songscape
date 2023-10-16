@@ -8,7 +8,7 @@ export default async function TopTracks() {
   const tracksList: LFMTrack[] = await getChartClient({ method: 'tracks' });
 
   return (
-    <div className="top-artists">
+    <div className="home__section home__section--top-tracks">
       <Heading variant="h2" icon="number-25">
         All time favorites
       </Heading>

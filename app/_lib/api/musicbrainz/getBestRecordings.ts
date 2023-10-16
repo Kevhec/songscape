@@ -9,11 +9,12 @@ export async function getBestRecordings(
 ) {
   try {
     const songName = encodeURIComponent(name?.replace('?', '') || '');
-    const url = `${MB_BASE_URL}/recording/?query=recording%3A"${songName}"%20AND%20status:official&limit=5&fmt=json&inc=releases`;
+    const url = `${MB_BASE_URL}/recording/?query=recording%3A"${songName}"%20AND%20artist:${artist}%20AND%20status:official&limit=5&fmt=json&inc=releases`;
+    console.log(url);
 
     const response: MBRecordingResult = await ratelimiter.fetchRequest({ url });
 
-    const bestMatchs = response.recordings.filter((recording) => {
+    /* const bestMatchs = response.recordings.filter((recording) => {
       const scoreContribution = recording.score > 98;
       const artistContribution = (
         artist !== undefined
@@ -22,9 +23,9 @@ export async function getBestRecordings(
       );
 
       return scoreContribution && artistContribution;
-    });
+    }); */
 
-    return bestMatchs || [];
+    return response.recordings || [];
   } catch (error) {
     return [];
   }

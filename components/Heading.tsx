@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import type { IconVariant, TypographyVariants } from '@/app/_lib/types';
 import Icon from './icon';
 import Typography from './Typography';
@@ -7,11 +8,15 @@ interface Props {
   icon?: IconVariant;
   variant: TypographyVariants
   children: React.ReactNode;
+  className?: string;
 }
 
-export default function Heading({ children, variant, icon }: Props) {
+export default function Heading({
+  children, variant, icon, className,
+}: Props) {
+  const classes = cn('heading__container', className);
   return (
-    <div className="heading__container">
+    <div className={classes}>
       {
         icon && (
           <Icon variant={icon} />

@@ -26,9 +26,7 @@ export default async function getArtistInfoClient(artist: LFMArtist) {
 
   // Get artist data
   try {
-    const response = await fetch(`${HOSTNAME}/api/artist/?id=${id}&artistname=${artist.name}`, {
-      cache: 'force-cache',
-    });
+    const response = await fetch(`${HOSTNAME}/api/artist/?id=${id}&artistname=${artist.name}`);
     return await response.json() as { artist: ChartArtist };
   } catch (error: any) {
     throw new Error(`Error looking for your artist :( ${error.message}`);

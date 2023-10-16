@@ -1,0 +1,10 @@
+@use '@/scss/global/variables' as *;
+
+.home {
+  &__section {
+    margin-bottom: rem(16);
+    &--top-tracks {
+      padding: 0 rem(16);
+    }
+  }
+}
