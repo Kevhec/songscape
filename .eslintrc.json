@@ -11,5 +11,13 @@
     "linebreak-style": 0,
     "react/require-default-props": "off",
     "import/prefer-default-export": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./src/app/api/**/*.ts", "./src/app/_lib/api/**/*.ts"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
 }

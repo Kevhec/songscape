@@ -20,12 +20,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/fonts": ["./styles/fonts"],
-      "@/scss/*": ["./styles/scss/*"],
-      "@/assets/*": ["./app/_assets/*"],
-      "@/lib/*": ["./app/_lib/*"],
-      "@/types": ["./app/_lib/types/"]
+      "@/*": ["./src/*"],
+      "@/fonts": ["./src/styles/fonts"],
+      "@/scss/*": ["./src/styles/scss/*"],
+      "@/assets/*": ["./src/app/_assets/*"],
+      "@/lib/*": ["./src/app/_lib/*"],
+      "@/types": ["./src/app/_lib/types/"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./next.config.js", "swiper.d.ts"],
