@@ -2,9 +2,28 @@
 
 .home {
   &__section {
-    margin-bottom: rem(16);
-    &--top-tracks {
-      padding: 0 rem(16);
+    margin-bottom: rem(24);
+    padding: 0 rem(16);
+
+    @include mediaq($tablet) {
+      margin-bottom: rem(16);
+    }
+
+    &--top-artists {
+      padding: 0;
+    }
+  }
+
+  &__columns {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include mediaq($tablet) {
+      flex-direction: row;
+
+      > * {
+        flex: 1;
+      }
     }
   }
 }

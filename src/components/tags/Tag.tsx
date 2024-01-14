@@ -2,23 +2,24 @@ import React from 'react';
 import classNames from 'classnames';
 import { lato } from '@/fonts';
 
-type Variant = 'dark';
+type Variant = 'dark' | 'default';
 
 interface Props {
-  tag: string
+  children: string
   variant: Variant
 }
 
 const variantsMap = {
   dark: 'tag--dark',
+  default: 'tag--default',
 };
 
-export default function Tag({ tag, variant }: Props) {
+export default function Tag({ children, variant }: Props) {
   const classes = classNames('tag', variantsMap[variant], lato.variable);
 
   return (
     <div className={classes}>
-      <p>{tag}</p>
+      <p>{children}</p>
     </div>
   );
 }

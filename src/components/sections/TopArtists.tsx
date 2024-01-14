@@ -8,7 +8,7 @@ export default async function TopArtists() {
   const artistsList = await fetchChartDataClient({ type: 'artists' });
 
   return (
-    <div className="home__section home__section--top-artists">
+    <>
       <Heading variant="h1" icon="number-25" className="heading__container--padded">
         Artists that made history
       </Heading>
@@ -19,6 +19,6 @@ export default async function TopArtists() {
           ))
         }
       />
-    </div>
+    </>
   );
 }

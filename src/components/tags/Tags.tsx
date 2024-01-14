@@ -12,7 +12,9 @@ export default function Tags({ tags }: Props) {
     <div className="tags">
       {
         tags.slice(undefined, 3).map((tag) => (
-          <Tag key={tag.id} tag={tag.name} variant="dark" />
+          <Tag key={tag.id} variant="dark">
+            {tag.name}
+          </Tag>
         ))
       }
     </div>

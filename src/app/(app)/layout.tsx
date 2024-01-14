@@ -45,7 +45,7 @@ export default function AppLayout({ children }: Props) {
         </div>
         <p className={`attribution ${lato.className}`}>Powered by AudioScrobbler</p>
       </aside>
-      <main>
+      <main className="main-section">
         {children}
       </main>
     </>

@@ -7,7 +7,7 @@ export default async function TopTracks() {
   const tracksList = await fetchChartDataClient({ type: 'tracks' });
 
   return (
-    <div className="home__section home__section--top-tracks">
+    <>
       <Heading variant="h2" icon="number-25">
         All time favorites
       </Heading>
@@ -16,6 +16,6 @@ export default async function TopTracks() {
           <TrackCard track={track} key={track.id} />
         ))
       }
-    </div>
+    </>
   );
 }

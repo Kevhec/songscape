@@ -14,17 +14,35 @@
 }
 
 .tag {
-  padding: rem(4) rem(8);
-  border-radius: 500px;
   font-family: var(--font-lato);
-  font-size: rem(12);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   text-transform: capitalize;
   height: min-content;
+  padding: rem(4) rem(8);
+  border-radius: 9999px;
+  
+  &--default {
+    font-size: rem(14);
+    border: 2px solid $primary-yellow;
+    color: $neutral-light-gray;
+
+    @include mediaq($tablet) {
+      font-size: rem(18);
+    }
+  }
 
   &--dark {
+    font-size: rem(12);
     background-color: $neutral-black;
     color: $neutral-light-gray;
+  }
+}
+
+.toptags {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(10);
   }
 }
