@@ -3,14 +3,18 @@
 .home {
   &__section {
     margin-bottom: rem(24);
-    padding: 0 rem(16);
 
     @include mediaq($tablet) {
       margin-bottom: rem(16);
+      padding: 0 rem(16);
     }
 
     &--top-artists {
       padding: 0;
+    }
+
+    &--top-tags {
+      padding: 0 rem(16);
     }
   }
 
@@ -25,5 +29,10 @@
         flex: 1;
       }
     }
+  }
+
+  &__topAlbums {
+    display: flex;
+    justify-content: space-between;
   }
 }

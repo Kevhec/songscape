@@ -1,9 +1,12 @@
 import React from 'react';
+import fetchChartDataClient from '@/app/_lib/client/fetchChartData';
 import Heading from '../Heading';
 import Button from '../Button';
 import Tag from '../tags/Tag';
 
 export default async function TopTags() {
+  const tagsList = await fetchChartDataClient({ type: 'tags' });
+
   return (
     <>
       <Heading variant="h2" icon="number-25">
@@ -11,10 +14,10 @@ export default async function TopTags() {
       </Heading>
       <div className="toptags__container">
         {
-          Array.from({ length: 6 }).map((_, i) => (
-            <Button href="#" key={Math.abs(i)}>
+          tagsList.map((tag) => (
+            <Button href="#" key={tag.id}>
               <Tag variant="default">
-                {`Example ${i ** 10}`}
+                {tag.name}
               </Tag>
             </Button>
           ))

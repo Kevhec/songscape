@@ -9,14 +9,16 @@ type ParamToValueMap = {
 const paramToValueMap: ParamToValueMap = {
   topArtists: 'method=chart.gettopartists',
   topTracks: 'method=chart.gettoptracks',
+  topTags: 'method=chart.gettoptags',
   artistInfo: 'method=artist.getinfo',
+  artistAlbums: 'method=artist.gettopalbums',
   artistName: 'artist=',
   limit: 'limit=',
 };
 
 function parseParams({ params }: Params) {
   const parseParamWithValue = (paramName: ValueMethod, paramValue: any) => (
-    paramToValueMap[paramName].concat(`${paramValue}`)
+    paramToValueMap[paramName].concat(`${encodeURI(paramValue)}`)
   );
 
   let parsedParams = '';
@@ -28,10 +30,13 @@ function parseParams({ params }: Params) {
     }
 
     // Handle valued params, they are provided as key value objects
-    const paramName = Object.keys(param)[0] as ValueMethod;
+    const valuedParams = Object.keys(param) as ValueMethod[];
+    const parsedValuedParams = valuedParams.map((valuedParam) => {
+      const paramValue = param[valuedParam];
+      return parseParamWithValue(valuedParam, paramValue);
+    }).join('&');
 
-    const paramValue = param[paramName];
-    return parseParamWithValue(paramName, paramValue);
+    return parsedValuedParams;
   }).join('&');
 
   return parsedParams;

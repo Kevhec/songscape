@@ -21,11 +21,14 @@ export interface SliderElement {
 
 interface Props {
   elements: React.ReactNode[]
+  sliderIdentifier: string
   leftControlIcon?: SliderIcon
   rightControlIcon?: SliderIcon
 }
 
-const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => {
+const Slider = memo(({
+  elements, leftControlIcon, rightControlIcon, sliderIdentifier,
+}: Props) => {
   const swiperRef = useRef<SwiperRef | null>(null);
   const [sliderElements] = useSliderElements({ elements });
 
@@ -40,8 +43,8 @@ const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => 
       cssMode: true,
       navigation: {
         enabled: true,
-        prevEl: '.swiper-prevElement',
-        nextEl: '.swiper-nextElement',
+        prevEl: `.slider-${sliderIdentifier}-prevControl`,
+        nextEl: `.slider-${sliderIdentifier}-nextControl`,
       },
       injectStyles: [
         `
@@ -59,7 +62,7 @@ const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => 
       Object.assign(swiperRef?.current, params);
       swiperRef?.current?.initialize();
     }
-  }, []);
+  }, [sliderIdentifier]);
 
   return (
     <div className="mySwiper">
@@ -72,13 +75,13 @@ const Slider = memo(({ elements, leftControlIcon, rightControlIcon }: Props) => 
           ))
         }
       </swiper-container>
-      <div className="swiper-prevElement swiper-control">
+      <div className={`swiper-prevElement swiper-control slider-${sliderIdentifier}-prevControl`}>
         <Icon
           variant={`${leftControlIcon?.variant || 'arrow-left'}`}
           fill={`${leftControlIcon?.fill || '#9BBB9A'}`}
         />
       </div>
-      <div className="swiper-nextElement swiper-control">
+      <div className={`swiper-nextElement swiper-control slider-${sliderIdentifier}-nextControl`}>
         <Icon
           variant={`${rightControlIcon?.variant || 'arrow-right'}`}
           fill={`${rightControlIcon?.fill || '#9BBB9A'}`}

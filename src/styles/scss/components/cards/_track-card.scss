@@ -3,9 +3,28 @@
 .track {
   display: flex;
   gap: rem(16);
+  position: relative;
+
+  @include mediaq($tablet) {
+    padding: rem(8) 0;
+  }
 
   &:not(:last-child) {
     margin-bottom: rem(16);
+
+    @include mediaq($tablet) {
+
+      &::after {
+        content: '';
+        width: 85%;
+        height: 1px;
+        position: absolute;
+        bottom: rem(-8);
+        left: 50%;
+        transform: translate(-50%, 0);
+        background-color: $primary-yellow;
+      }
+    }
   }
 
   &__image {

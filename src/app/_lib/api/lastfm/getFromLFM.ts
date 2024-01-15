@@ -1,11 +1,19 @@
 import { LFM_API_KEY, LFM_BASE_URL } from '@/lib/constants';
 import parseParams from './parseParams';
 import type {
-  LFMArtist, LFMArtistChart, LFMTrack, LFMTrackChart,
+  LFMArtist, LFMArtistChart, LFMTagChart, LFMArtistTopAlbums, LFMTrack, LFMTrackChart,
 } from '../../types';
 
-export type ValueMethod = 'artistName' | 'limit';
-export type NoValueMethod = 'topArtists' | 'topTracks' | 'artistInfo';
+export type ValueMethod =
+  | 'artistName'
+  | 'limit';
+
+export type NoValueMethod =
+  | 'topArtists'
+  | 'topTracks'
+  | 'artistInfo'
+  | 'topTags'
+  | 'artistAlbums';
 export interface Params {
   params: (NoValueMethod | { [key in ValueMethod]?: any })[];
 }
@@ -20,19 +28,39 @@ type TopArtistsParamsType = Params & {
 type TopTracksParamsType = Params & {
   params: ['topTracks'] | ['topTracks', Partial<ParamsWithObject<'limit'>>];
 };
+type TopTagsParamsType = Params & {
+  params: ['topTags'] | ['topTags', Partial<ParamsWithObject<'limit'>>];
+};
 type ArtistInfoParamsType = Params & {
   params: ['artistInfo'] | ['artistInfo', Partial<ParamsWithObject<'artistName'>>];
 };
+type ArtistAlbumsParamsType = Params & {
+  params:
+  | ['artistAlbums']
+  | [
+    'artistAlbums',
+    Partial<ParamsWithObject<'artistName' | 'limit'>>,
+  ];
+};
 
-type LastFMAPIResponse = LFMArtist[] | LFMTrack[] | LFMArtistChart | LFMArtist;
+type LastFMAPIResponse =
+  | LFMArtist[]
+  | LFMTrack[]
+  | LFMArtistChart
+  | LFMArtist
+  | LFMTagChart
+  | LFMTrackChart;
 
 async function getFromLFM(params: TopArtistsParamsType): Promise<LFMArtistChart>;
 async function getFromLFM(params: TopTracksParamsType): Promise<LFMTrackChart>;
+async function getFromLFM(params: TopTagsParamsType): Promise<LFMTagChart>;
 async function getFromLFM(params: ArtistInfoParamsType): Promise<{ artist: LFMArtist }>;
+async function getFromLFM(params: ArtistAlbumsParamsType): Promise<LFMArtistTopAlbums>;
 async function getFromLFM<T extends LastFMAPIResponse>(params: Params): Promise<T> {
   const requestParams = parseParams(params);
 
   const url = `${LFM_BASE_URL}/?${requestParams}&api_key=${LFM_API_KEY}&format=json`;
+
   try {
     const res = await fetch(url);
 

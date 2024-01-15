@@ -1,0 +1,19 @@
+@use '@/scss/global/variables' as *;
+
+.albumCard {
+  &__content {
+    font-family: var(--font-montserat);
+    font-weight: 500;
+  }
+
+  &__albumName {
+    text-align: center;
+    font-size: rem(18);
+  }
+
+  &__albumArtist {
+    text-align: center;
+    font-size: rem(16);
+    color: $primary-green;
+  }
+}

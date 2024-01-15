@@ -1,5 +1,4 @@
 /* LFM Types */
-
 type LFMTag = {
   name: string
   url: string
@@ -29,6 +28,12 @@ interface LFMTrackChart {
   }
 }
 
+interface LFMTagChart {
+  tags: {
+    tag: LFMTag[]
+  }
+}
+
 interface ChartArtist {
   name: string
   mbid: string
@@ -52,6 +57,51 @@ interface LFMTrack {
   id: string;
 }
 
+interface LFMArtistTopAlbums {
+  topalbums: LFMTopAlbums;
+  id: string
+}
+
+interface LFMTopAlbums {
+  album: LFMAlbum[];
+  '@attr': LFMAttr;
+}
+
+interface LFMAttr {
+  artist: string;
+  page: string;
+  perPage: string;
+  totalPages: string;
+  total: string;
+}
+
+interface LFMAlbum {
+  name: string;
+  playcount: number;
+  mbid?: string;
+  url: string;
+  artist: LFMAlbumArtistClass;
+  image: LFMImage[];
+}
+
+interface LFMAlbumArtistClass {
+  name: string;
+  mbid: string;
+  url: string;
+}
+
+interface LFMImage {
+  '#text': string;
+  size: LFMImageSize;
+}
+
+enum LFMImageSize {
+  Extralarge = 'extralarge',
+  Large = 'large',
+  Medium = 'medium',
+  Small = 'small',
+}
+
 export type {
   LFMArtist,
   LFMTag,
@@ -59,4 +109,12 @@ export type {
   ChartArtist,
   LFMTrack,
   LFMTrackChart,
+  LFMTagChart,
+  LFMAlbum,
+  LFMAlbumArtistClass,
+  LFMArtistTopAlbums,
+  LFMAttr,
+  LFMImage,
+  LFMImageSize,
+  LFMTopAlbums,
 };

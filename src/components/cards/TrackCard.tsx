@@ -14,9 +14,7 @@ export default async function TrackCard({ track }: Props) {
     artist, duration, name,
   } = track;
 
-  const response = await fetch(`${HOSTNAME}/api/track/getpicture/?name=${name}&artist=${artist.name}`, {
-    cache: 'no-cache',
-  });
+  const response = await fetch(`${HOSTNAME}/api/track/getpicture/?name=${name}&artist=${artist.name}`);
   const images: CoverArtArchiveImages = await response.json();
 
   /* console.log({

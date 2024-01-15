@@ -10,9 +10,7 @@ export default async function getArtistInfoClient(artist: LFMArtist) {
   // Fill mbid if missing
   if (!artist.mbid) {
     try {
-      const response = await fetch(`${HOSTNAME}/api/artist/getid/?artistname=${artist.name}`, {
-        cache: 'force-cache',
-      });
+      const response = await fetch(`${HOSTNAME}/api/artist/getid/?artistname=${artist.name}`);
       const { artistId } = await response.json();
       id = artistId;
     } catch (error: any) {
