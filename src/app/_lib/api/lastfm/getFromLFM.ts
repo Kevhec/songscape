@@ -6,7 +6,8 @@ import type {
 
 export type ValueMethod =
   | 'artistName'
-  | 'limit';
+  | 'limit'
+  | 'page';
 
 export type NoValueMethod =
   | 'topArtists'
@@ -23,13 +24,13 @@ export type ParamsWithObject<T extends ValueMethod> = {
 };
 
 type TopArtistsParamsType = Params & {
-  params: ['topArtists'] | ['topArtists', Partial<ParamsWithObject<'limit'>>];
+  params: ['topArtists'] | ['topArtists', Partial<ParamsWithObject<'limit' | 'page'>>];
 };
 type TopTracksParamsType = Params & {
-  params: ['topTracks'] | ['topTracks', Partial<ParamsWithObject<'limit'>>];
+  params: ['topTracks'] | ['topTracks', Partial<ParamsWithObject<'limit' | 'page'>>];
 };
 type TopTagsParamsType = Params & {
-  params: ['topTags'] | ['topTags', Partial<ParamsWithObject<'limit'>>];
+  params: ['topTags'] | ['topTags', Partial<ParamsWithObject<'limit' | 'page'>>];
 };
 type ArtistInfoParamsType = Params & {
   params: ['artistInfo'] | ['artistInfo', Partial<ParamsWithObject<'artistName'>>];

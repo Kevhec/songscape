@@ -6,6 +6,10 @@
     font-weight: 500;
   }
 
+  &__image {
+    margin-bottom: rem(8);
+  }
+
   &__albumName {
     text-align: center;
     font-size: rem(18);

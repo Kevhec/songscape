@@ -9,19 +9,21 @@ import getTopTags from '@/app/_lib/api/lastfm/getTopTags';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type');
+  const page = searchParams.get('page');
+  const limit = searchParams.get('limit');
 
   let data: LFMArtist[] | LFMTrack[] | LFMTag[] = [];
 
   try {
     switch (type) {
       case 'artists':
-        data = await getTopArtists();
+        data = await getTopArtists({ page, limit });
         break;
       case 'tracks':
-        data = await getTopTracks();
+        data = await getTopTracks({ page, limit });
         break;
       case 'tags':
-        data = await getTopTags();
+        data = await getTopTags({ page, limit });
         break;
       default:
         console.error(`[server]: Chart type "${type}" does not exists`);
@@ -31,7 +33,7 @@ export async function GET(request: Request) {
         );
     }
 
-    // If data exists return it succesfully
+    // If data exists return it successfully
     if (data) {
       const dataWithId = data.map((el) => (
         {
@@ -44,7 +46,7 @@ export async function GET(request: Request) {
       });
     }
 
-    // If no data is recieved return error
+    // If no data is received return error
     return errorHandler(`No data available for type: ${type}`, 404);
   } catch (error: any) {
     console.error(`[server]: Error handling request for type ${type}: ${error.message}`);

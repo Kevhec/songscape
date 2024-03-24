@@ -14,6 +14,7 @@ const paramToValueMap: ParamToValueMap = {
   artistAlbums: 'method=artist.gettopalbums',
   artistName: 'artist=',
   limit: 'limit=',
+  page: 'page=',
 };
 
 function parseParams({ params }: Params) {
@@ -32,7 +33,8 @@ function parseParams({ params }: Params) {
     // Handle valued params, they are provided as key value objects
     const valuedParams = Object.keys(param) as ValueMethod[];
     const parsedValuedParams = valuedParams.map((valuedParam) => {
-      const paramValue = param[valuedParam];
+      const paramValue = param?.[valuedParam];
+      if (!paramValue) return '';
       return parseParamWithValue(valuedParam, paramValue);
     }).join('&');
 
