@@ -1,9 +1,9 @@
 import React from 'react';
-import TopArtists from '@/components/sections/TopArtists';
-import TopTracks from '@/components/sections/TopTracks';
-import TopTags from '@/components/sections/TopTags';
-import fetchChartDataClient from '@/app/_lib/client/fetchChartData';
-import TopAlbums from '@/components/sections/TopAlbums';
+import TopArtists from '@components/sections/TopArtists';
+import TopTracks from '@components/sections/TopTracks';
+import TopTags from '@components/sections/TopTags';
+import fetchChartDataClient from '@lib/client/fetchChartData';
+import TopAlbums from '@components/sections/TopAlbums';
 
 export default async function Page() {
   const artistsList = await fetchChartDataClient({ type: 'artists' });

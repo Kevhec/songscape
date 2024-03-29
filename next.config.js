@@ -49,6 +49,24 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'via.assets.so',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'jameshype.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i1.sndcdn.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

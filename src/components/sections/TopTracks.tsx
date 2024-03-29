@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchChartDataClient from '@/app/_lib/client/fetchChartData';
+import fetchChartDataClient from '@lib/client/fetchChartData';
 import Heading from '../Heading';
 import TrackCard from '../cards/TrackCard';
 

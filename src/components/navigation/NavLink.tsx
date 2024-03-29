@@ -4,7 +4,7 @@ import React, {
   Ref, forwardRef,
 } from 'react';
 import Link from 'next/link';
-import type { IconVariant } from '@/types';
+import type { IconVariant } from '@types';
 import Icon from '../icon';
 
 interface Props {

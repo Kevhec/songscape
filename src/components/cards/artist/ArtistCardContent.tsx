@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Icon from '@/components/icon';
-import { LFMArtist } from '@/types';
-import getArtistInfoClient from '@/lib/client/getArtistInfo';
-import { lato } from '@/styles/fonts';
-import Tags from '@/components/tags/Tags';
-import FavoriteButton from '@/components/FavoriteButton';
+import Icon from '@components/icon';
+import type { LFMArtist } from '@types';
+import getArtistInfoClient from '@lib/client/getArtistInfo';
+import { lato } from '@fonts';
+import Tags from '@components/tags/Tags';
+import FavoriteButton from '@components/FavoriteButton';
 
 interface Props {
   artist: LFMArtist

@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import getTopArtists from '@/app/_lib/api/lastfm/getTopArtists';
-import type { LFMArtist, LFMTag, LFMTrack } from '@/app/_lib/types';
-import getTopTracks from '@/app/_lib/api/lastfm/getTopTracks';
-import generateRandomId from '@/app/_lib/api/generateRandomId';
-import errorHandler from '@/app/_lib/api/errorHandler';
-import getTopTags from '@/app/_lib/api/lastfm/getTopTags';
+import getTopArtists from '@lib/api/lastfm/getTopArtists';
+import type { LFMArtist, LFMTag, LFMTrack } from '@lib/types';
+import getTopTracks from '@lib/api/lastfm/getTopTracks';
+import generateRandomId from '@lib/api/generateRandomId';
+import errorHandler from '@lib/api/errorHandler';
+import getTopTags from '@lib/api/lastfm/getTopTags';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

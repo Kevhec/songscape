@@ -1,5 +1,5 @@
 import React, { Suspense, memo } from 'react';
-import type { LFMArtist } from '@/types';
+import type { LFMArtist } from '@types';
 import ArtistCardContent from './ArtistCardContent';
 import ArtistCardLoading from './ArtistCardLoading';
 

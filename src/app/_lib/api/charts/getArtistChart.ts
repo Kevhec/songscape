@@ -1,4 +1,4 @@
-import type { ChartArtist } from '@/app/_lib/types/LFMTypes';
+import type { ChartArtist } from '@lib/types/LFMTypes';
 import getTopArtists from '../lastfm/getTopArtists';
 import getArtistInfo from '../lastfm/getArtistInfo';
 import getArtistPicture from '../musicbrainz/getArtistPicture';

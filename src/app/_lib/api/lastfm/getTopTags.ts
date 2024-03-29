@@ -1,4 +1,4 @@
-import type { LFMTag } from '@/types';
+import type { LFMTag } from '@types';
 import getFromLFM from './getFromLFM';
 
 interface Params {

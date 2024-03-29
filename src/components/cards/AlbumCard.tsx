@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import type { LFMAlbum } from '@/app/_lib/types';
-import { montserrat } from '@/styles/fonts';
+import type { LFMAlbum } from '@lib/types';
+import { montserrat } from '@fonts';
 
 interface Props {
   album: LFMAlbum

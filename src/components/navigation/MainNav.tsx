@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import classnames from 'classnames';
 import { useMediaQuery } from 'react-responsive';
-import type { NavLinkType } from '@/types';
+import type { NavLinkType } from '@types';
 import useActiveLink from '@/hooks/useActiveLink';
 import NavLink from './NavLink';
 

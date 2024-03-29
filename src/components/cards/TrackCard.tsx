@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import type { CoverArtArchiveImages, LFMTrack } from '@/app/_lib/types';
-import { HOSTNAME } from '@/app/_lib/constants';
-import msToMinutesAndSeconds from '@/app/_lib/utils/msToMinAndS';
-import formatToDuration from '@/app/_lib/utils/formatToDuration';
+import type { CoverArtArchiveImages, LFMTrack } from '@lib/types';
+import { HOSTNAME } from '@lib/constants';
+import msToMinutesAndSeconds from '@lib/utils/msToMinAndS';
+import formatToDuration from '@lib/utils/formatToDuration';
 
 interface Props {
   track: LFMTrack;

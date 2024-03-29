@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { getBestRecordings } from '@/app/_lib/api/musicbrainz/getBestRecordings';
-import getExistingCoverArt from '@/app/_lib/api/musicbrainz/findExistingCoverArt';
-import errorHandler from '@/app/_lib/api/errorHandler';
+import { getBestRecordings } from '@lib/api/musicbrainz/getBestRecordings';
+import getExistingCoverArt from '@lib/api/musicbrainz/findExistingCoverArt';
+import errorHandler from '@lib/api/errorHandler';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

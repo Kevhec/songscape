@@ -4,14 +4,15 @@ import React, { memo, useEffect, useRef } from 'react';
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperOptions } from 'swiper/types';
 import useSliderElements from '@/hooks/useSliderElements';
-import type { IconVariant } from '@/lib/types';
+import type { IconVariant } from '@lib/types';
+import cn from 'classnames';
 import Icon from './icon';
 
 type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
 
 interface SliderIcon {
   variant: IconVariant
-  fill: `#${string}`
+  fill?: `#${string}`
 }
 
 export interface SliderElement {
@@ -24,10 +25,11 @@ interface Props {
   sliderIdentifier: string
   leftControlIcon?: SliderIcon
   rightControlIcon?: SliderIcon
+  overrideParams?: SwiperOptions
 }
 
 const Slider = memo(({
-  elements, leftControlIcon, rightControlIcon, sliderIdentifier,
+  elements, leftControlIcon, rightControlIcon, sliderIdentifier, overrideParams,
 }: Props) => {
   const swiperRef = useRef<SwiperRef | null>(null);
   const [sliderElements] = useSliderElements({ elements });
@@ -56,16 +58,19 @@ const Slider = memo(({
           }
         `,
       ],
+      ...overrideParams,
     };
 
     if (swiperRef.current) {
       Object.assign(swiperRef?.current, params);
       swiperRef?.current?.initialize();
     }
-  }, [sliderIdentifier]);
+  }, [sliderIdentifier, overrideParams]);
+
+  const mainContainerClasses = cn(['mySwiper', { [`slider-${sliderIdentifier}`]: sliderIdentifier }]);
 
   return (
-    <div className="mySwiper">
+    <div className={mainContainerClasses}>
       <swiper-container init={'false' as unknown as boolean} ref={swiperRef}>
         {
           sliderElements?.map((element) => (
@@ -75,13 +80,13 @@ const Slider = memo(({
           ))
         }
       </swiper-container>
-      <div className={`swiper-prevElement swiper-control slider-${sliderIdentifier}-prevControl`}>
+      <div className={`swiper-prevElement swiper-control slider-${sliderIdentifier}-control slider-${sliderIdentifier}-prevControl`}>
         <Icon
           variant={`${leftControlIcon?.variant || 'arrow-left'}`}
           fill={`${leftControlIcon?.fill || '#9BBB9A'}`}
         />
       </div>
-      <div className={`swiper-nextElement swiper-control slider-${sliderIdentifier}-nextControl`}>
+      <div className={`swiper-nextElement swiper-control slider-${sliderIdentifier}-control slider-${sliderIdentifier}-nextControl`}>
         <Icon
           variant={`${rightControlIcon?.variant || 'arrow-right'}`}
           fill={`${rightControlIcon?.fill || '#9BBB9A'}`}

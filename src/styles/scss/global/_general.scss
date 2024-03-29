@@ -8,3 +8,17 @@ body {
 a {
   text-decoration: none;
 }
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $secondary-desaturated-green;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $primary-green;
+  border-radius: 555px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from '@/components/Slider';
-import type { LFMArtist } from '@/app/_lib/types';
+import Slider from '@components/Slider';
+import type { LFMArtist } from '@lib/types';
 import ArtistCard from '../cards/artist/ArtistCard';
 import Heading from '../Heading';
 

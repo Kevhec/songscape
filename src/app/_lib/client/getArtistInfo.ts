@@ -1,4 +1,4 @@
-import type { ChartArtist, LFMArtist } from '@/types';
+import type { ChartArtist, LFMArtist } from '@types';
 import { HOSTNAME } from '../constants';
 
 export default async function getArtistInfoClient(artist: LFMArtist) {

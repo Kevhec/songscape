@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IconVariantProps } from '@/types';
+import type { IconVariantProps } from '@types';
 
 export default function EmptyHeart({
   fill, height, width, stroke, style, className,

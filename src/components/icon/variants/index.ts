@@ -7,6 +7,8 @@ import ArrowLeft from './ArrowLeft';
 import ArrowRight from './ArrowRight';
 import EmptyHeart from './EmptyHeart';
 import Number25 from './Number25';
+import DiscoverSliderLeftControl from './DiscoverSliderLeftControl';
+import DiscoverSliderRightControl from './DiscoverSliderRightControl';
 
 export {
   Home,
@@ -17,5 +19,7 @@ export {
   ArrowRight,
   Location,
   EmptyHeart,
-  Number25
+  Number25,
+  DiscoverSliderLeftControl,
+  DiscoverSliderRightControl,
 };

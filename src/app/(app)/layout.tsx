@@ -1,7 +1,7 @@
 import React from 'react';
-import '@/scss/layouts/app.scss';
-import MainNav from '@/components/navigation/MainNav';
-import type { NavLinkType } from '@/types';
+import '@scss/layouts/app.scss';
+import MainNav from '@components/navigation/MainNav';
+import type { NavLinkType } from '@types';
 import { lato } from '../../styles/fonts';
 import generateRandomId from '../_lib/api/generateRandomId';
 

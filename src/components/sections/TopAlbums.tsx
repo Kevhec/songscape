@@ -1,6 +1,6 @@
 import React from 'react';
-import getArtistAlbumsClient from '@/app/_lib/client/getArtistAlbums';
-import type { LFMArtist } from '@/app/_lib/types';
+import getArtistAlbumsClient from '@lib/client/getArtistAlbums';
+import type { LFMArtist } from '@lib/types';
 import Heading from '../Heading';
 import AlbumCard from '../cards/AlbumCard';
 import Slider from '../Slider';

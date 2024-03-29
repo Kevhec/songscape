@@ -1,6 +1,6 @@
-import { MB_BASE_URL, MB_USERAGENT } from '@/lib/constants';
-import RateLimiter from '@/lib/utils/rateLimiter';
-import { MBSearchArtist } from '@/types';
+import { MB_BASE_URL, MB_USERAGENT } from '@lib/constants';
+import RateLimiter from '@lib/utils/rateLimiter';
+import { MBSearchArtist } from '@types';
 
 const rateLimiter = RateLimiter.getInstance();
 

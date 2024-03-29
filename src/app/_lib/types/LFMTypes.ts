@@ -19,6 +19,12 @@ interface LFMArtist {
 interface LFMArtistChart {
   artists: {
     artist: LFMArtist[]
+    '@attr': {
+      page: string
+      perPage: string
+      totalPages: string
+      total: string
+    }
   }
 }
 

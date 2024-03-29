@@ -1,7 +1,7 @@
 import React from 'react';
-import type { Variant } from '@/types';
+import type { IconVariantProps } from '@types';
 
-export default function ArrowLeft({ fill, width, height }: Variant) {
+export default function ArrowLeft({ fill, width, height }: IconVariantProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

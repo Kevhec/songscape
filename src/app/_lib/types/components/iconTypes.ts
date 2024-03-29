@@ -9,7 +9,9 @@ export type IconVariant =
   | 'arrow-left'
   | 'arrow-right'
   | 'empty-heart'
-  | 'number-25';
+  | 'number-25'
+  | 'discover-slider-left-control'
+  | 'discover-slider-right-control';
 
 export interface IconVariantProps {
   fill?: string

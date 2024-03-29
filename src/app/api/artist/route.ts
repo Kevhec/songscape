@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import generateRandomId from '@/lib/api/generateRandomId';
-import getArtistPicture from '@/lib/api/musicbrainz/getArtistPicture';
-import getArtistInfo from '@/lib/api/lastfm/getArtistInfo';
-import getArtistLookup from '@/lib/api/musicbrainz/getArtistLookup';
-import type { ChartArtist } from '@/types';
-import errorHandler from '@/app/_lib/api/errorHandler';
+import generateRandomId from '@lib/api/generateRandomId';
+import getArtistPicture from '@lib/api/musicbrainz/getArtistPicture';
+import getArtistInfo from '@lib/api/lastfm/getArtistInfo';
+import getArtistLookup from '@lib/api/musicbrainz/getArtistLookup';
+import errorHandler from '@lib/api/errorHandler';
+import type { ChartArtist } from '@types';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

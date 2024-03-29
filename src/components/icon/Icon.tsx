@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IconComponentMapping, IconVariant, IconVariantProps } from '@/types';
+import type { IconComponentMapping, IconVariant, IconVariantProps } from '@types';
 import './index.css';
 import {
   ArrowLeft,
@@ -11,6 +11,8 @@ import {
   ArrowRight,
   EmptyHeart,
   Number25,
+  DiscoverSliderLeftControl,
+  DiscoverSliderRightControl,
 } from './variants';
 
 interface Props extends IconVariantProps {
@@ -27,6 +29,8 @@ const iconComponentMapping: IconComponentMapping = {
   'arrow-right': ArrowRight,
   'empty-heart': EmptyHeart,
   'number-25': Number25,
+  'discover-slider-left-control': DiscoverSliderLeftControl,
+  'discover-slider-right-control': DiscoverSliderRightControl,
 };
 
 export default function Icon({

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import RateLimiter from '@/lib/utils/rateLimiter';
+import RateLimiter from '@lib/utils/rateLimiter';
 
 // eslint-disable-next-line consistent-return
 export default function middleware(request: NextRequest) {

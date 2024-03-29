@@ -1,6 +1,6 @@
 import React from 'react';
-import Icon from '@/components/icon';
-import SkeletonBox from '@/components/loading/SkeletonBox';
+import Icon from '@components/icon';
+import SkeletonBox from '@components/loading/SkeletonBox';
 
 export default function ArtistCardLoading() {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { SliderElement } from '@/components/Slider';
-import { generateUUID } from '@/lib/utils/uuidgenerator';
+import type { SliderElement } from '@components/Slider';
+import { generateUUID } from '@lib/utils/uuidgenerator';
 
 interface Params {
   elements: React.ReactNode[]

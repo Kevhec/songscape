@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { LFMTag } from '@/types';
+import type { LFMTag } from '@types';
 import Tag from './Tag';
 
 interface Props {

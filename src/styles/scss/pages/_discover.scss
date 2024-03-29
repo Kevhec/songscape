@@ -1,0 +1,29 @@
+.discover {
+  &__randomArtists {
+    max-width: 365px;
+  }
+}
+
+.slider {
+  &-discoverartist {
+    border-radius: 24px;
+    overflow: hidden;
+
+    &-control {
+      height: fit-content;
+      width: auto;
+      background: unset;
+      bottom: 24px;
+      top: unset;
+      display: block;
+      padding: 0;
+      right: 24px;
+    }
+
+    &-prevControl {
+      --gap: 16px;
+      left: unset;
+      transform: translate(calc(-100% - var(--gap)));
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { TypographyComponentMapping, TypographyVariants } from '@/types';
+import { TypographyComponentMapping, TypographyVariants } from '@types';
 
 const variantsMapping: TypographyComponentMapping = {
   h1: 'h1',

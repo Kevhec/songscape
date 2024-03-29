@@ -1,8 +1,8 @@
-import { LFM_API_KEY, LFM_BASE_URL } from '@/lib/constants';
-import parseParams from './parseParams';
+import { LFM_API_KEY, LFM_BASE_URL } from '@lib/constants';
 import type {
   LFMArtist, LFMArtistChart, LFMTagChart, LFMArtistTopAlbums, LFMTrack, LFMTrackChart,
-} from '../../types';
+} from '@types';
+import parseParams from './parseParams';
 
 export type ValueMethod =
   | 'artistName'
@@ -52,18 +52,26 @@ type LastFMAPIResponse =
   | LFMTagChart
   | LFMTrackChart;
 
-async function getFromLFM(params: TopArtistsParamsType): Promise<LFMArtistChart>;
-async function getFromLFM(params: TopTracksParamsType): Promise<LFMTrackChart>;
-async function getFromLFM(params: TopTagsParamsType): Promise<LFMTagChart>;
-async function getFromLFM(params: ArtistInfoParamsType): Promise<{ artist: LFMArtist }>;
-async function getFromLFM(params: ArtistAlbumsParamsType): Promise<LFMArtistTopAlbums>;
-async function getFromLFM<T extends LastFMAPIResponse>(params: Params): Promise<T> {
+async function getFromLFM(params: TopArtistsParamsType, options?: RequestInit)
+: Promise<LFMArtistChart>;
+async function getFromLFM(params: TopTracksParamsType, options?: RequestInit)
+: Promise<LFMTrackChart>;
+async function getFromLFM(params: TopTagsParamsType, options?: RequestInit)
+: Promise<LFMTagChart>;
+async function getFromLFM(params: ArtistInfoParamsType, options?: RequestInit)
+: Promise<{ artist: LFMArtist }>;
+async function getFromLFM(params: ArtistAlbumsParamsType, options?: RequestInit)
+: Promise<LFMArtistTopAlbums>;
+async function getFromLFM<T extends LastFMAPIResponse>(
+  params: Params,
+  options?: RequestInit,
+): Promise<T> {
   const requestParams = parseParams(params);
 
   const url = `${LFM_BASE_URL}/?${requestParams}&api_key=${LFM_API_KEY}&format=json`;
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, options);
 
     if (!res.ok) {
       throw new Error(`Error while getting data from LastFM. Status: ${res.status}`);

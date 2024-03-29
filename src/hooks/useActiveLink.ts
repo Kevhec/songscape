@@ -2,7 +2,7 @@ import {
   useCallback, useEffect, useState,
 } from 'react';
 import { usePathname } from 'next/navigation';
-import type { NavLinkProps } from '@/types';
+import type { NavLinkProps } from '@types';
 
 const fallbackLinkProps: NavLinkProps = {
   x: 0,

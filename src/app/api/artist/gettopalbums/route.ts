@@ -1,5 +1,5 @@
-import errorHandler from '@/app/_lib/api/errorHandler';
-import getArtistTopAlbums from '@/app/_lib/api/lastfm/getArtistTopAlbums';
+import errorHandler from '@lib/api/errorHandler';
+import getArtistTopAlbums from '@lib/api/lastfm/getArtistTopAlbums';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -8,7 +8,7 @@ export async function GET(request: Request) {
 
   if (!artistName) {
     return NextResponse.json({
-      message: `No album data is available for artist ${artistName}`,
+      message: 'Artist name is required',
     }, {
       status: 404,
     });

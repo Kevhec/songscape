@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import searchByName from '@/lib/api/musicbrainz/findWithNameMB';
-import errorHandler from '@/app/_lib/api/errorHandler';
+import searchByName from '@lib/api/musicbrainz/findWithNameMB';
+import errorHandler from '@lib/api/errorHandler';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

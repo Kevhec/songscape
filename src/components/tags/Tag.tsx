@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { lato } from '@/fonts';
+import { lato } from '@fonts';
 
 type Variant = 'dark' | 'default';
 

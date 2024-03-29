@@ -1,4 +1,4 @@
-import type { LFMTrack } from '@/types';
+import type { LFMTrack } from '@types';
 import getFromLFM from './getFromLFM';
 
 interface Params {

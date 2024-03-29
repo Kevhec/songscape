@@ -1,4 +1,4 @@
-import type { LFMArtist } from '@/types';
+import type { LFMArtist } from '@types';
 import getFromLFM from './getFromLFM';
 
 interface Params {

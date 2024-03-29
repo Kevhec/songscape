@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import type { IconVariant, TypographyVariants } from '@/app/_lib/types';
+import type { IconVariant, TypographyVariants } from '@lib/types';
 import Icon from './icon';
 import Typography from './Typography';
 
