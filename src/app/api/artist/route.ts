@@ -38,7 +38,7 @@ export async function GET(request: Request) {
     result.tags = LFMArtist?.tags?.tag.map((tag) => (
       { ...tag, id: generateRandomId() }
     )) || [];
-    result.picture = getArtistPicture(MBArtist.relations) || '';
+    result.picture = await getArtistPicture(result.name) || '';
 
     return NextResponse.json(
       { artist: result },
