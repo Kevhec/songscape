@@ -27,7 +27,9 @@
       "@assets/*": ["src/app/_assets/*"],
       "@lib/*": ["src/app/_lib/*"],
       "@types": ["src/app/_lib/types/"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/app/_lib/utils/*"]
+      
 
     }
   },

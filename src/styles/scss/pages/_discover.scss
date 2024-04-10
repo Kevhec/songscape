@@ -1,29 +1,93 @@
+@use '@scss/global/variables.scss' as *;
+
 .discover {
+  &__container {
+    padding: 0 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
   &__randomArtists {
-    max-width: 365px;
+    max-width: 635px;
+    aspect-ratio: 16 / 9;
+  }
+
+  &__topAlbums {
+    overflow: hidden;
   }
 }
 
-.slider {
-  &-discoverartist {
-    border-radius: 24px;
-    overflow: hidden;
-
+.slider-discoverartist {
+  .swiper {
     &-control {
       height: fit-content;
       width: auto;
       background: unset;
-      bottom: 24px;
+      bottom: 8px;
       top: unset;
       display: block;
       padding: 0;
-      right: 24px;
+      right: 8px;
+      
+      @include mediaq($tablet) {
+        bottom: 24px;
+        right: 24px;
+      }
     }
-
-    &-prevControl {
+  
+    &-prevElement {
       --gap: 16px;
       left: unset;
       transform: translate(calc(-100% - var(--gap)));
+    }
+  
+    &-pagination {
+      &-bullets {
+        display: flex;
+        gap: 24px;
+        padding: 16px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 100%);
+      }
+  
+      &-bullet {
+        $bullet-size: 8px;
+        $bullter-active-color: #CBD930;
+
+        width: $bullet-size;
+        height: $bullet-size;
+        background-color: $primary;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 150ms ease-in-out;
+  
+        &-active {
+          background-color: #CBD930;
+        }
+      }
+    }
+  }
+}
+
+.swiper {
+  &-pagination {
+    $bullet-size: 8px;
+      $bullter-active-color: #CBD930;
+    &-bullet {
+      width: $bullet-size;
+        height: $bullet-size;
+        background-color: $primary;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 150ms ease-in-out;
+
+        &-active {
+          background-color: #CBD930;
+        }
     }
   }
 }

@@ -9,6 +9,10 @@ import EmptyHeart from './EmptyHeart';
 import Number25 from './Number25';
 import DiscoverSliderLeftControl from './DiscoverSliderLeftControl';
 import DiscoverSliderRightControl from './DiscoverSliderRightControl';
+import Flame from './Flame';
+import GrowingArrow from './GrowingArrow';
+import GoBackArrow from './GoBackArrow';
+import GoNextArrow from './GoNextArrow';
 
 export {
   Home,
@@ -22,4 +26,8 @@ export {
   Number25,
   DiscoverSliderLeftControl,
   DiscoverSliderRightControl,
+  Flame,
+  GrowingArrow,
+  GoBackArrow,
+  GoNextArrow,
 };

@@ -2,23 +2,38 @@
 
 .home {
   &__section {
+    padding: 0 rem(16);
     margin-bottom: rem(24);
 
     @include mediaq($tablet) {
-      margin-bottom: rem(16);
-      padding: 0 rem(16);
+      padding: 0;
+      margin-bottom: 0;
     }
 
     &--top-artists {
+      margin-top: rem(24);
       padding: 0;
+
+      @include mediaq($tablet) {
+        margin-top: unset;
+        margin-bottom: rem(32);
+      }
     }
 
     &--top-tags {
-      padding: 0 rem(16);
+      @include mediaq($tablet) {
+        padding: 0;
+      }
+    }
+    
+    &--top-tracks {
+      @include mediaq($tablet) {
+        margin: 0;
+      }
     }
 
     &--top-albums {
-      padding-top: rem(16);
+      padding: 0;
     }
   }
 
@@ -27,16 +42,38 @@
     flex-direction: column-reverse;
 
     @include mediaq($tablet) {
-      flex-direction: row;
-
-      > * {
-        flex: 1;
-      }
+      display: grid;
+      grid-template-columns: minmax(250px, 1fr) 1fr;
+      gap: rem(32);
+      overflow: hidden;
     }
   }
 
   &__topAlbums {
-    display: flex;
-    justify-content: space-between;
+    border-radius: 8px;
+    
+    @include mediaq($tablet) {
+      justify-content: center;
+    }
+  }
+
+  &__container {
+    overflow: hidden;
+    @include mediaq($tablet) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__musicalLegends {
+    @include mediaq($tablet) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: rem(16);
+      border-radius: rem(8);
+      gap: rem(16);
+      flex-grow: 1;
+    }
   }
 }

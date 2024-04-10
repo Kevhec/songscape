@@ -3,9 +3,9 @@
 .typography {
   &__variant {
     line-height: 1;
+    font-size: rem(18);
+    
     &--h1 {
-      font-size: rem(18);
-
       @include mediaq($tablet) {
         font-size: rem(24);
       }

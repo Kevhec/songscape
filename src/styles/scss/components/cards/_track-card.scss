@@ -1,30 +1,29 @@
 @use '@scss/global/variables' as *;
 
 .track {
-  display: flex;
+  display: grid;
+  grid-template-columns: 48px 1fr min-content;
+  align-items: center;
   gap: rem(16);
   position: relative;
+  min-width: 100%;
+  width: 0;
+  border-radius: 8px;
 
   @include mediaq($tablet) {
-    padding: rem(8) 0;
+    padding: rem(8);
+    padding-right: rem(16);
   }
 
   &:not(:last-child) {
     margin-bottom: rem(16);
+  }
 
-    @include mediaq($tablet) {
-
-      &::after {
-        content: '';
-        width: 85%;
-        height: 1px;
-        position: absolute;
-        bottom: rem(-8);
-        left: 50%;
-        transform: translate(-50%, 0);
-        background-color: $primary-yellow;
-      }
-    }
+  &__header {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__image {
@@ -32,18 +31,14 @@
     border-radius: 50%;
   }
 
-  &__body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-  }
-
   &__data {
     text-transform: capitalize;
     font-size: rem(16);
     font-weight: 600;
     line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &--songname {
       font-weight: 700;
@@ -52,11 +47,11 @@
 
     &--artist {
       font-size: rem(12);
-      color: $primary-yellow;
+      color: $primary;
     }
 
     &--duration {
-      color: $primary-yellow;
+      color: $primary;
     }
   }
 }

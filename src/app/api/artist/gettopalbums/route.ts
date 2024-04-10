@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const artistName = searchParams.get('artistname');
+  const limit = searchParams.get('limit');
 
   if (!artistName) {
     return NextResponse.json({
@@ -15,7 +16,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const artistAlbums = await getArtistTopAlbums(artistName);
+    const artistAlbums = await getArtistTopAlbums({ artistName, limit });
 
     return NextResponse.json(artistAlbums, {
       status: 200,

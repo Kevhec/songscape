@@ -9,29 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-grid": "^0.4.1",
     "@types/md5": "^2.3.5",
-    "@types/node": "20.4.8",
-    "@types/react": "18.2.38",
-    "@types/react-dom": "18.2.17",
-    "@types/uuid": "^9.0.3",
-    "classnames": "^2.3.2",
-    "eslint": "8.46.0",
-    "eslint-config-next": "14.0.3",
+    "@types/node": "20.12.2",
+    "@types/react": "18.2.73",
+    "@types/react-dom": "18.2.23",
+    "@types/uuid": "^9.0.8",
+    "classnames": "^2.5.1",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.1.4",
     "md5": "^2.3.0",
-    "next": "14.0.3",
+    "next": "14.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-responsive": "^9.0.2",
-    "sharp": "^0.32.6",
-    "swiper": "^10.2.0",
-    "typescript": "5.1.6",
-    "uuid": "^9.0.0"
+    "react-responsive": "^10.0.0",
+    "sharp": "^0.33.3",
+    "swiper": "^11.1.0",
+    "typescript": "5.4.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "sass": "^1.66.0"
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "sass": "^1.72.0"
   }
 }

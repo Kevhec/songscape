@@ -1,0 +1,112 @@
+'use client';
+
+import React, { memo, useEffect, useRef } from 'react';
+import { register } from 'swiper/element/bundle';
+import { Swiper, SwiperOptions } from 'swiper/types';
+import useIdElement from '@/hooks/useIdElement';
+import type { IconVariant } from '@lib/types';
+import cn from 'classnames';
+import Icon from './icon';
+
+type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
+
+interface SliderIcon {
+  variant: IconVariant
+  fill?: `#${string}`
+}
+
+export interface SliderElement {
+  item: React.ReactNode
+  id: string | number
+}
+
+interface Props {
+  elements: React.ReactNode[]
+  sliderIdentifier: string
+  leftControlIcon?: SliderIcon
+  rightControlIcon?: SliderIcon
+  overrideParams?: SwiperOptions
+  hasPagination?: boolean
+}
+
+const Slider = memo(({
+  elements, leftControlIcon, rightControlIcon, sliderIdentifier, overrideParams, hasPagination,
+}: Props) => {
+  const swiperRef = useRef<SwiperRef | null>(null);
+  const [sliderElements] = useIdElement({ elements });
+
+  useEffect(() => {
+    register();
+
+    const params: SwiperOptions = {
+      slidesPerView: 'auto',
+      spaceBetween: '16',
+      centeredSlides: true,
+      centeredSlidesBounds: true,
+      cssMode: true,
+      navigation: {
+        enabled: true,
+        prevEl: `.slider-${sliderIdentifier}-prevControl`,
+        nextEl: `.slider-${sliderIdentifier}-nextControl`,
+      },
+      injectStyles: [
+        `
+          .swiper-wrapper {
+            padding: 0 1rem;
+            @media screen and (min-width: 768px) {
+              padding: 0;
+            }
+          }
+        `,
+      ],
+      pagination: {
+        enabled: hasPagination,
+        clickable: true,
+        el: `.slider-${sliderIdentifier}-pagination`,
+        bulletClass: `swiper-pagination-bullet slider-${sliderIdentifier}-pagination-bullet`,
+        bulletActiveClass: `swiper-pagination-bullet-active slider-${sliderIdentifier}-pagination-bullet-active`,
+      },
+      ...overrideParams,
+    };
+
+    if (swiperRef.current) {
+      Object.assign(swiperRef?.current, params);
+      swiperRef?.current?.initialize();
+    }
+  }, [sliderIdentifier, overrideParams, hasPagination]);
+
+  const mainContainerClasses = cn(['mySwiper', { [`slider-${sliderIdentifier}`]: sliderIdentifier }]);
+
+  return (
+    <div className={mainContainerClasses}>
+      <swiper-container init={'false' as unknown as boolean} ref={swiperRef}>
+        {
+          sliderElements?.map((element) => (
+            <swiper-slide key={element.id}>
+              {element.item}
+            </swiper-slide>
+          ))
+        }
+      </swiper-container>
+      <div className={`swiper-prevElement swiper-control slider-${sliderIdentifier}-control slider-${sliderIdentifier}-prevControl`}>
+        <Icon
+          variant={`${leftControlIcon?.variant || 'arrow-left'}`}
+          fill={`${leftControlIcon?.fill || '#ecf39e'}`}
+        />
+      </div>
+      <div className={`swiper-nextElement swiper-control slider-${sliderIdentifier}-control slider-${sliderIdentifier}-nextControl`}>
+        <Icon
+          variant={`${rightControlIcon?.variant || 'arrow-right'}`}
+          fill={`${rightControlIcon?.fill || '#ecf39e'}`}
+        />
+      </div>
+      {
+        hasPagination && (
+          <div className={`slider-${sliderIdentifier}-pagination`} />
+        )
+      }
+    </div>
+  );
+});
+
+export default Slider;

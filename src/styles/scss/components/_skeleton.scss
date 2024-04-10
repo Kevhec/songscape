@@ -3,12 +3,14 @@
 .skeleton {
   --element-width: unset;
   --element-height: unset;
+  --radius: 0px;
   
   width: var(--element-width);
   height: var(--element-height);
   overflow: hidden;
-  background-color: $secondary-desaturated-green;
+  background-color: $neutral-black;
   position: relative;
+  border-radius: var(--radius);
 
   &::before {
     content: '';

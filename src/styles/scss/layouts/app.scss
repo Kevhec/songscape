@@ -3,18 +3,19 @@
 
 body {
   min-height: 100vh;
-  max-width: 1440px;
   margin-inline: auto;
   padding: rem(16) 0;
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  overflow: hidden;
 
   @include mediaq(768px) {
     display: grid;
     grid-template-columns: rem(75) 1fr;
     grid-template-rows: min-content;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
   }
 
   @include mediaq(1024px) {
@@ -22,75 +23,113 @@ body {
   }
 }
 
-header {
-  padding: rem(10) rem(16);
-
-  @include mediaq(768px) {
-    padding: 0;
-    grid-column: 1 / 3;
-    display: grid;
-    grid-template-columns: rem(75) 1fr;
+.mainLayout {
+  &__header {
+    padding: rem(10) rem(16);
+    z-index: 9999;
+  
+    @include mediaq(768px) {
+      padding: 0;
+      grid-column: 1 / 3;
+      position: sticky;
+      top: 0;
+      width: 100%;
+    }
   }
 
-  @include mediaq(1024px) {
-    grid-template-columns: rem(200) 1fr;
+  &__aside {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    
+    @include mediaq(768px) {
+      position: sticky;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      height: 100%;
+      padding: rem(32) rem(12) rem(24);
+    }
+  
+    @include mediaq(1024px) {
+      padding: rem(24);
+    }
+  }
+
+  &__main {
+    position: relative;
+    flex-grow: 1;
+    padding-bottom: rem(24);
+    background-color: $neutral-black;
+    
+    @include mediaq(768px) {
+      background: linear-gradient(to bottom right, #1e2224, #0b121596);
+      background-color: $neutral-darkGray;
+      padding: 0 rem(16);
+      padding: rem(24);
+      height: 100%;
+    }
+  }
+
+  &__mainContent {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 
 .logo {
   --tablet-logoSize: 48px;
 
-  @include mediaq(768px) {
-    padding-top: rem(12);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid $secondary-desaturated-green;
-  
-    img {
-      width: var(--tablet-logoSize);
-      height: var(--tablet-logoSize);
+  @include mediaq($tablet) {
+    &--mobile {
+      display: none;
     }
   }
-  
-  @include mediaq(1024px) {
-    padding-top: rem(24);
-    img {
-      width: unset;
-      height: unset;
+
+  &--desktop {
+    display: none;
+
+    @include mediaq(768px) {
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 128px;
+    
+      img {
+        width: var(--tablet-logoSize);
+        height: var(--tablet-logoSize);
+      }
+    }
+    
+    @include mediaq(1024px) {
+      img {
+        width: unset;
+        height: unset;
+      }
     }
   }
 }
 
-.placeholder {
+.navbar {
   display: none;
+  background-color: $neutral-darkGray;
 
   @include mediaq(768px) {
-    display: block;
-    padding: rem(24);
-  }
-}
-
-aside {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-
-  @include mediaq(768px) {
-    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    border-right: 1px solid $secondary-desaturated-green;
-    padding: rem(32) rem(12) rem(24);
-  }
-
-  @include mediaq(1024px) {
-    padding: rem(76) rem(24) rem(24);
+    align-items: center;
+    gap: rem(32);
+    padding: rem(16) rem(24);
+    border-bottom: 1px solid $primary;
+    width: 100%;
   }
 }
 
@@ -102,24 +141,5 @@ aside {
     text-align: center;
     font-size: rem(14);
     color: $neutral-gray;
-  }
-}
-
-main {
-  position: relative;
-  flex-grow: 1;
-  overflow-y: hidden;
-  padding-bottom: rem(24);
-
-  @include mediaq(768px) {
-    padding: 0 rem(16);
-    flex-grow: unset;
-    min-height: unset;
-    height: 100%;
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    border-top: 1px solid $secondary-desaturated-green;
-    padding: rem(24);
-    overflow-y: auto;
   }
 }

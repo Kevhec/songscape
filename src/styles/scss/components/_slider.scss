@@ -1,63 +1,86 @@
 @use '@scss/global/variables' as *;
 
-.mySwiper {
-  position: relative;
-}
+.splide {
+  $arrows-size: 30px;
+  $container-arrow-offset: 8px;
 
-swiper-container {
-  width: 100%;
-  height: auto;
-}
+  &__container {
+    position: relative;
+  }
 
-swiper-slide {
-  width: auto;
-}
+  &__arrows {
+    &--discoverartist {
+      & .splide__arrow {
+        top: unset;
+        right: 8px;
+        bottom: 8px;
 
-.swiper {
-  &-nextElement,
-  &-prevElement {
-    cursor: pointer;
-    display: none;
-    position: absolute;
-    width: 50px;
-    box-sizing: border-box;
-    height: 100%;
-    z-index: 2;
-    transition: opacity 150ms ease-in-out;
-    top: 0;
-    padding: 14px;
-    
-    @include mediaq(768px) {
-      width: 100px;
-      display: flex;
-      align-items: center;
-    }
+        @include mediaq($tablet) {
+          right: 24px;
+          bottom: 24px;
+        } 
+      }
 
-    svg {
-      transition: filter 200ms ease-in;
-    }
+      & .splide__arrow--prev {
+        --gap: 16px;
+        left: unset;
+        transform: translate(calc(-100% - var(--gap)), -50%);
 
-    &:hover {
-      svg {
-        filter: drop-shadow(0px 0px 8px $primary-green);
+        &:active:not(:disabled) {
+          transform: translate(calc(-100% - var(--gap)), -50%) scale(.9);
+        }
       }
     }
   }
 
-  &-prevElement {
-    background: linear-gradient(to right, rgba(33, 37, 41, 1) 0%, rgba(33, 37, 41, 0.00) 100%);
-    left: 0;
-    justify-content: left;
+  &__arrow {
+    position: absolute  ;
+    border-radius: 50%;
+    height: $arrows-size;
+    width: $arrows-size;
+    background-color: $neutral-black;
+    padding: 0;
+    display: grid;
+    place-content: center;
+    border: unset;
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: center;
+    transition: transform 100ms ease-in, opacity 100ms ease;
+
+    &:active:not(:disabled) {
+      transform: translateY(-50%) scale(.9);
+    }
+
+    &:disabled {
+      opacity: .7;
+    }
+
+    &--next {
+      right: $container-arrow-offset;
+    }
+
+    &--prev {
+      left: $container-arrow-offset;
+    }
   }
 
-  &-nextElement {
-    background: linear-gradient(to left, rgba(33, 37, 41, 1) 0%, rgba(33, 37, 41, 0.00) 100%);
-    right: 0;
-    justify-content: right;
-  }
+  &__pagination {
+    li {
+      padding: 6px;
+    }
 
-  &-button-disabled {
-    opacity: 0;
-    pointer-events: none;
+    &__page {
+      width: 8px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      background-color: $primary;
+      border-radius: 50%;
+      border: unset;
+
+      &.is-active {
+        background-color: $primary-accent;
+      }
+    }
   }
 }

@@ -24,14 +24,13 @@ export async function GET(request: Request) {
       return errorHandler('Artist name is required', 400);
     }
 
-    if (!artistId) {
-      return errorHandler('Artist id is required', 400);
-    }
-
-    result.mbid = artistId;
-
     const LFMArtist = await getArtistInfo(artistName);
-    const MBArtist = await getArtistLookup(result.mbid);
+    let MBArtist;
+
+    if (artistId) {
+      result.mbid = artistId;
+      MBArtist = await getArtistLookup(result.mbid);
+    }
 
     result.name = LFMArtist?.name || '';
     result.location = MBArtist?.area?.name || '';

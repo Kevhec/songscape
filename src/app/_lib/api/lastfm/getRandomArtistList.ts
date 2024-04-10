@@ -8,7 +8,7 @@ const pageCache: Number[] = [];
 
 // Maximum number provided by LastFM for a page param, after this the resulting
 // array containing the artists data is empty
-const MAX_PAGES = 1999;
+const MAX_PAGES = 500;
 const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
 const MAX_PAGES_IN_CACHE = process.env.NODE_ENV === 'development'
   ? 2

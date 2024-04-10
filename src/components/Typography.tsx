@@ -15,14 +15,19 @@ const variantsMapping: TypographyComponentMapping = {
 interface Props {
   variant: TypographyVariants
   children: React.ReactNode
+  className?: string
 }
 
-export default function Typography({ variant, children }: Props) {
+export default function Typography({ variant, children, className }: Props) {
   const Component = variantsMapping[variant];
 
-  const classes = cn({
-    [`typography__variant--${variant}`]: variant,
-  });
+  const classes = cn(
+    'typography__variant',
+    {
+      [`typography__variant--${variant}`]: variant,
+    },
+    className,
+  );
 
   return (
     <Component className={classes}>

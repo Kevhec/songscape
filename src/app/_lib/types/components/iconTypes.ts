@@ -10,8 +10,12 @@ export type IconVariant =
   | 'arrow-right'
   | 'empty-heart'
   | 'number-25'
-  | 'discover-slider-left-control'
-  | 'discover-slider-right-control';
+  | 'slider-left-control'
+  | 'slider-right-control'
+  | 'flame'
+  | 'growing-arrow'
+  | 'go-back'
+  | 'go-next';
 
 export interface IconVariantProps {
   fill?: string

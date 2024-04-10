@@ -18,10 +18,6 @@ export default async function getArtistInfoClient(artist: LFMArtist) {
     }
   }
 
-  if (!id) {
-    throw new Error('It seems we couldn\'t find your artist this time :(');
-  }
-
   // Get artist data
   try {
     const response = await fetch(`${HOSTNAME}/api/artist/?id=${id}&artistname=${artist.name}`);

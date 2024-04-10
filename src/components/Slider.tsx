@@ -1,14 +1,17 @@
 'use client';
 
-import React, { memo, useEffect, useRef } from 'react';
-import { register } from 'swiper/element/bundle';
-import { Swiper, SwiperOptions } from 'swiper/types';
-import useSliderElements from '@/hooks/useSliderElements';
+/* eslint-disable jsx-a11y/control-has-associated-label */
+
+import React, { memo } from 'react';
+import {
+  type Options, Splide, SplideSlide, SplideTrack,
+} from '@splidejs/react-splide';
+import { Grid } from '@splidejs/splide-extension-grid';
+import '@splidejs/react-splide/css/core';
 import type { IconVariant } from '@lib/types';
 import cn from 'classnames';
+import idToElement from '@utils/idToElement';
 import Icon from './icon';
-
-type SwiperRef = HTMLElement & { swiper: Swiper; initialize: () => void };
 
 interface SliderIcon {
   variant: IconVariant
@@ -20,78 +23,81 @@ export interface SliderElement {
   id: string | number
 }
 
-interface Props {
+interface Props extends Options {
   elements: React.ReactNode[]
   sliderIdentifier: string
   leftControlIcon?: SliderIcon
   rightControlIcon?: SliderIcon
-  overrideParams?: SwiperOptions
+  hasPagination?: boolean
 }
 
 const Slider = memo(({
-  elements, leftControlIcon, rightControlIcon, sliderIdentifier, overrideParams,
+  elements,
+  leftControlIcon,
+  rightControlIcon,
+  sliderIdentifier,
+  pagination,
+  perPage = 1,
+  autoWidth,
+  ...options
 }: Props) => {
-  const swiperRef = useRef<SwiperRef | null>(null);
-  const [sliderElements] = useSliderElements({ elements });
+  const sliderElements = elements.map((element) => (
+    idToElement({ element })
+  ));
 
-  useEffect(() => {
-    register();
-
-    const params: SwiperOptions = {
-      slidesPerView: 'auto',
-      spaceBetween: '16',
-      centeredSlides: true,
-      centeredSlidesBounds: true,
-      cssMode: true,
-      navigation: {
-        enabled: true,
-        prevEl: `.slider-${sliderIdentifier}-prevControl`,
-        nextEl: `.slider-${sliderIdentifier}-nextControl`,
-      },
-      injectStyles: [
-        `
-          .swiper-wrapper {
-            padding: 0 1rem;
-            @media screen and (min-width: 768px) {
-              padding: 0;
-            }
-          }
-        `,
-      ],
-      ...overrideParams,
-    };
-
-    if (swiperRef.current) {
-      Object.assign(swiperRef?.current, params);
-      swiperRef?.current?.initialize();
-    }
-  }, [sliderIdentifier, overrideParams]);
-
-  const mainContainerClasses = cn(['mySwiper', { [`slider-${sliderIdentifier}`]: sliderIdentifier }]);
+  const mainContainerClasses = cn([{ [`slider-${sliderIdentifier}`]: sliderIdentifier }]);
 
   return (
     <div className={mainContainerClasses}>
-      <swiper-container init={'false' as unknown as boolean} ref={swiperRef}>
-        {
-          sliderElements?.map((element) => (
-            <swiper-slide key={element.id}>
-              {element.item}
-            </swiper-slide>
-          ))
-        }
-      </swiper-container>
-      <div className={`swiper-prevElement swiper-control slider-${sliderIdentifier}-control slider-${sliderIdentifier}-prevControl`}>
-        <Icon
-          variant={`${leftControlIcon?.variant || 'arrow-left'}`}
-          fill={`${leftControlIcon?.fill || '#9BBB9A'}`}
-        />
-      </div>
-      <div className={`swiper-nextElement swiper-control slider-${sliderIdentifier}-control slider-${sliderIdentifier}-nextControl`}>
-        <Icon
-          variant={`${rightControlIcon?.variant || 'arrow-right'}`}
-          fill={`${rightControlIcon?.fill || '#9BBB9A'}`}
-        />
-      </div>
+      <Splide
+        hasTrack={false}
+        options={{
+          autoWidth,
+          pagination,
+          perPage,
+          ...options,
+        }}
+        id={sliderIdentifier}
+        extensions={{ Grid }}
+      >
+        <div className={`splide__${sliderIdentifier} splide__container`}>
+          <SplideTrack>
+            {sliderElements?.map((element) => (
+              <SplideSlide
+                key={element.id}
+              >
+                {element.item}
+              </SplideSlide>
+            ))}
+          </SplideTrack>
+          <div className={`splide__arrows splide__arrows--${sliderIdentifier}`}>
+            <button
+              type="button"
+              className={`splide__arrow splide__arrow--${sliderIdentifier} splide__arrow--prev`}
+            >
+              <Icon
+                variant={`${leftControlIcon?.variant || 'slider-left-control'}`}
+                fill={`${leftControlIcon?.fill || '#ecf39e'}`}
+              />
+            </button>
+            <button
+              type="button"
+              className={`splide__arrow splide__arrow--${sliderIdentifier} splide__arrow--next`}
+            >
+              <Icon
+                variant={`${rightControlIcon?.variant || 'slider-right-control'}`}
+                fill={`${rightControlIcon?.fill || '#ecf39e'}`}
+              />
+            </button>
+          </div>
+          {
+            pagination && (
+              <ul className={`splide__pagination splide-${sliderIdentifier}-pagination`} />
+            )
+          }
+        </div>
+      </Splide>
+
     </div>
   );
 });

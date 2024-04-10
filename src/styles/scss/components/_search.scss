@@ -1,0 +1,40 @@
+@use '@scss/global/variables' as *;
+
+.search {
+  &__input {
+    background-color: transparent;
+    border: unset;
+    padding-left: 13.5px;
+    flex: 1;
+    caret-color: $primary;
+    color: $primary;
+
+    &::placeholder {
+      color: $primary;
+    }
+
+    &:is(:active, :focus) {
+      outline: unset;
+    }
+  }
+
+  &__inputLabel {
+    border: 1px solid $primary;
+    border-radius: 5555px;
+    background-color: rgba(236, 243, 158, 0.25);
+    padding: rem(10) rem(16);
+    width: min(100%, 370px);
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: url('/search-icon.svg');
+      width: 17.5px;
+      height: 17.5px;
+    }
+
+    &:has(input:focus) {
+      outline: 1px solid $primary;
+    }
+  }
+}

@@ -16,11 +16,20 @@ export default async function TopArtists({ artistsList }: Props) {
       </Heading>
       <Slider
         sliderIdentifier="topartists"
+        autoWidth
+        gap={16}
         elements={
           artistsList.map((artist) => (
             <ArtistCard artist={artist} />
           ))
         }
+        breakpoints={{
+          375: {
+            focus: 'center',
+          },
+        }}
+        omitEnd
+        perMove={1}
       />
     </>
   );

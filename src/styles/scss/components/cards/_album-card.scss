@@ -1,23 +1,58 @@
 @use '@scss/global/variables' as *;
 
 .albumCard {
+  $image-size: 150px;
+
+  max-width: $image-size;
+
   &__content {
     font-family: var(--font-montserat);
     font-weight: 500;
   }
 
-  &__image {
+  &__figure {
     margin-bottom: rem(8);
+  }
+  
+  &__image {
+    width: $image-size;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 
   &__albumName {
     text-align: center;
     font-size: rem(18);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__albumArtist {
     text-align: center;
     font-size: rem(16);
-    color: $primary-green;
+    color: $primary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--textOverImage {
+    position: relative;
+    max-width: unset;
+
+    & .albumCard__image {
+      width: 100%;
+    }
+
+    & .albumCard__content {
+      max-width: $image-size;
+      position: absolute;
+      bottom: 0;
+
+      & > * {
+        text-align: left;
+      }
+    }
   }
 }

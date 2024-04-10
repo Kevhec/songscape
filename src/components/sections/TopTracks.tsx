@@ -8,7 +8,7 @@ export default async function TopTracks() {
 
   return (
     <>
-      <Heading variant="h2" icon="number-25">
+      <Heading variant="h2" icon="growing-arrow">
         All time favorites
       </Heading>
       {

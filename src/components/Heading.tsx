@@ -14,7 +14,7 @@ interface Props {
 export default function Heading({
   children, variant, icon, className,
 }: Props) {
-  const classes = cn('heading__container', className);
+  const classes = cn('heading__container', className, { 'heading__container--icon': icon });
   return (
     <div className={classes}>
       {

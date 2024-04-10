@@ -13,6 +13,10 @@ import {
   Number25,
   DiscoverSliderLeftControl,
   DiscoverSliderRightControl,
+  Flame,
+  GrowingArrow,
+  GoBackArrow,
+  GoNextArrow,
 } from './variants';
 
 interface Props extends IconVariantProps {
@@ -29,8 +33,12 @@ const iconComponentMapping: IconComponentMapping = {
   'arrow-right': ArrowRight,
   'empty-heart': EmptyHeart,
   'number-25': Number25,
-  'discover-slider-left-control': DiscoverSliderLeftControl,
-  'discover-slider-right-control': DiscoverSliderRightControl,
+  'slider-left-control': DiscoverSliderLeftControl,
+  'slider-right-control': DiscoverSliderRightControl,
+  flame: Flame,
+  'growing-arrow': GrowingArrow,
+  'go-back': GoBackArrow,
+  'go-next': GoNextArrow,
 };
 
 export default function Icon({

@@ -1,0 +1,57 @@
+@use '@scss/global/variables.scss' as *;
+
+.randomArtistCard {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  width: min(100%, 635px);
+  aspect-ratio: 16 / 9;
+  height: unset;
+  
+  @include mediaq($tablet) {
+    border-radius: 24px;
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: top;
+    
+    &--nosrc {
+      object-fit: none;
+      object-position: center;
+      height: 100%;
+    }
+  }
+
+  &__figure {
+    background-color: $neutral-black;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    padding: 8px;
+    width: 100%;
+    background: linear-gradient(to bottom, hsla(198, 31%, 6%, 0), hsla(198, 31%, 6%, .6) 40%);
+    
+    @include mediaq($tablet) {
+      padding: 24px;
+    }
+  }
+
+  &__name {
+    font-size: rem(18);
+    margin-bottom: rem(8);
+    text-transform: capitalize;
+    
+    @include mediaq($tablet) {
+      font-size: rem(32);
+      margin-bottom: rem(4);
+    }
+  }
+
+  &__tags {
+    display: flex;
+    gap: rem(8);
+  }
+}

@@ -15,20 +15,25 @@
 
 .tag {
   font-family: var(--font-lato);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   text-transform: capitalize;
   height: min-content;
-  padding: rem(4) rem(8);
+  padding: rem(8) rem(16);
   border-radius: 9999px;
   
   &--default {
     font-size: rem(14);
-    border: 2px solid $primary-yellow;
+    border: 2px solid $primary;
     color: $neutral-light-gray;
+    transition: background-color 200ms ease-in-out;
 
     @include mediaq($tablet) {
-      font-size: rem(18);
+      font-size: rem(16);
+    }
+
+    &:hover {
+      background-color: #ecf39e22;
     }
   }
 
@@ -44,5 +49,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: rem(10);
+
+    @include mediaq($tablet) {
+      justify-content: center;
+    }
   }
 }

@@ -34,7 +34,7 @@ export default async function TrackCard({ track }: Props) {
   };
 
   return (
-    <div className="track">
+    <article className="track track--darkbg">
       <Image
         src={imageSRC}
         alt={`Picture of ${name}`}
@@ -42,15 +42,14 @@ export default async function TrackCard({ track }: Props) {
         height={48}
         className="track__image"
       />
-      <div className="track__body">
-        <div className="track__header">
-          <p className="track__data track__data--songname">{formatName(name)}</p>
-          <p className="track__data track__data--artist">{formatName(artist.name)}</p>
-        </div>
-        <div className="track__play-info">
-          <p className="track__data--duration">{`${formatDuration(duration)}`}</p>
-        </div>
+      <div className="track__header">
+        <p className="track__data track__data--songname">{formatName(name)}</p>
+        <p className="track__data track__data--artist">{formatName(artist.name)}</p>
       </div>
-    </div>
+      <div className="track__play-info">
+        <p className="track__data--duration">{`${formatDuration(duration)}`}</p>
+      </div>
+      {/* <main className="track__body" /> */}
+    </article>
   );
 }

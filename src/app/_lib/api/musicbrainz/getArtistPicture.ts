@@ -20,7 +20,6 @@ async function getP18(entity: string): Promise<P18[] | ''> {
 
     return claims.P18;
   } catch (error: any) {
-    console.error('Error getting entity P18 ', error.message);
     return '';
   }
 }
@@ -42,17 +41,22 @@ function getWikimediaImageURL(fileName: string) {
 }
 
 export default async function getArtistPicture(artistName: string):Promise<string> {
+  const possibleKeywords = [' (musician)', ' (South Korean band)', 'ゲーム会社', '(rapper)', ''];
   // Find image relation
   try {
-    let artistP18 = await getP18(artistName);
+    const promises = [];
 
-    if (!artistP18) {
-      artistP18 = await getP18(`${artistName} (musician)`);
+    for (let i = 0; i < possibleKeywords.length; i += 1) {
+      const keyword = possibleKeywords[i];
+      promises.push(getP18(`${artistName}${keyword}`));
     }
 
-    if (typeof artistP18 === 'string') return '';
+    const responses = await Promise.all(promises);
+    const existingResponse = responses.find((el) => el);
 
-    const imageFileName = artistP18[0].mainsnak.datavalue.value;
+    if (!existingResponse) return '';
+
+    const imageFileName = existingResponse[0].mainsnak.datavalue.value;
 
     const imageURL = getWikimediaImageURL(imageFileName);
 
